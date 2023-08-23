@@ -40,10 +40,11 @@ public class ItemController{
 	  	
  }
 	
-	@GetMapping("customer/itemdetails")
-	public ResponseEntity<List<Item_Details>> getAllItemsForCustomer()
+	@GetMapping("customer/itemdetails/{cust_id}")
+	public ResponseEntity<List<Item_Details>> getAllItemsForCustomer(@PathVariable int cust_id)
 	{
-		List<Item_Details> itemlist=itemService.getAllItemsForCustomer();
+		System.out.println("ali");
+		List<Item_Details> itemlist=itemService.getAllItemsForCustomer(cust_id);
 		if(itemlist!=null)
 			return  new ResponseEntity<>(itemlist,HttpStatus.OK);
 		else 

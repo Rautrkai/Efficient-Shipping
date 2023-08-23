@@ -13,6 +13,6 @@ public interface ItemService {
 
 	List<Item_Details> getAllItem(int id);
 
-	List<Item_Details> getAllItemsForCustomer();
+	List<Item_Details> getAllItemsForCustomer(int cust_id);
 
 }

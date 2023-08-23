@@ -35,10 +35,6 @@ public class Transporter {
 	@Column(name="t_address",nullable=false)
 	private String t_address;
 	
-
-
-
-
 	@Column(name="t_verification",columnDefinition="varchar(50) default 'Pending'",nullable=false)
 	private String t_verification;
 	@Column(name="t_blacklist",columnDefinition="varchar(50) default 'Clear'",nullable=false)
@@ -48,51 +44,56 @@ public class Transporter {
 	@OneToMany(mappedBy="transporter")
 	private List<TransporterDriver> driver;
 	
-
-	
-	
 	@JsonIgnore
 	@OneToMany(mappedBy="transporter")
 	private List<Feedback> feedback_complaint;
 	
+	@JsonIgnore
+	@OneToOne(mappedBy="transporter")
+	private EstimatePrice esprice;
+	
+	
 
-	
-	
+	public EstimatePrice getEsprice() {
+		return getEsprice();
+	}
+
+	public void setEsprice(EstimatePrice esprice) {
+		this.esprice = esprice;
+	}
+
+	public Transporter(long t_id, String t_full_name, String t_email_id, String t_password, String t_ph_no,
+			String t_address, String t_verification, String t_blacklist, List<TransporterDriver> driver,
+			List<Feedback> feedback_complaint, EstimatePrice esprice) {
+		super();
+		this.t_id = t_id;
+		this.t_full_name = t_full_name;
+		this.t_email_id = t_email_id;
+		this.t_password = t_password;
+		this.t_ph_no = t_ph_no;
+		this.t_address = t_address;
+		this.t_verification = t_verification;
+		this.t_blacklist = t_blacklist;
+		this.driver = driver;
+		this.feedback_complaint = feedback_complaint;
+		this.esprice = esprice;
+	}
 
 	public Transporter() {
 		super();
 	}
 
-
-
-
-
 	public long getT_id() {
 		return t_id;
 	}
-
-
-
-
 
 	public void setT_id(long t_id) {
 		this.t_id = t_id;
 	}
 
-
-
-
-
-
-
-
-
 	public String getT_email_id() {
 		return t_email_id;
 	}
-
-
-
 
 
 	public void setT_email_id(String t_email_id) {
@@ -224,21 +225,6 @@ public class Transporter {
 
 
 
-	public Transporter(long t_id, String t_full_name, String t_email_id, String t_password, String t_ph_no,
-			String t_address, String t_verification, String t_blacklist, List<TransporterDriver> driver,
-			List<Feedback> feedback_complaint) {
-		super();
-		this.t_id = t_id;
-		this.t_full_name = t_full_name;
-		this.t_email_id = t_email_id;
-		this.t_password = t_password;
-		this.t_ph_no = t_ph_no;
-		this.t_address = t_address;
-		this.t_verification = t_verification;
-		this.t_blacklist = t_blacklist;
-		this.driver = driver;
-		this.feedback_complaint = feedback_complaint;
-	}
 
 
 

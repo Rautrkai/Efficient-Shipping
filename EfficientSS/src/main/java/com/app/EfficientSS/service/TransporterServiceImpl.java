@@ -80,6 +80,15 @@ public class TransporterServiceImpl implements TransporterService {
 				return null;
 		}
 
+
+
+		@Override
+		public List<Transporter> getVerifiedTranspoter() {
+			List<Transporter> tlist=Transporterdao.findVerifiedTrans();
+			
+			return tlist;
+		}
+
 	
 			
 		}

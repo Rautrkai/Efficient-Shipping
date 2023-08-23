@@ -79,4 +79,13 @@ public class TransporterController {
     			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
     }
+    @GetMapping("customer/transporter")
+    public ResponseEntity<List<Transporter>> getVerifiedTranspoter()    {
+    	List<Transporter> tlist=transporterService.getVerifiedTranspoter();
+    	System.out.println(tlist);
+    	if(tlist!=null)
+    		return new ResponseEntity<>(tlist,HttpStatus.OK);
+        		else
+        			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 }

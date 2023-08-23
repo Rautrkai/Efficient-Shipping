@@ -23,4 +23,8 @@ public interface TransporterService {
 
 	void updateBlaclist(Long t_id, Transporter transporter);
 
+	List<Transporter> getVerifiedTranspoter();
+
+	 
+
 }

@@ -40,9 +40,9 @@ public class ItemServiceImpl implements ItemService{
 		}
 
 
-		public List<Item_Details> getAllItemsForCustomer() {
+		public List<Item_Details> getAllItemsForCustomer(int cust_id) {
 			
-			return itemDao.findAll();
+			return itemDao.findByCustId(cust_id);
 		}
 
 
