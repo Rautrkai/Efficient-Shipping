@@ -32,6 +32,7 @@ public class EstimatePriceServiceImpl implements EstimatePriceService {
 	public Price findprice(long t_id,int item_id) {
 		Item_Details item=itemdao.findByItemId(item_id);
 		
+		
 		Optional <EstimatePrice> oldEstimatedPrice=Edao.findByTransporterId(t_id);
 		EstimatePrice es=oldEstimatedPrice.get();
 		
@@ -70,18 +71,24 @@ public class EstimatePriceServiceImpl implements EstimatePriceService {
 		    	}
 			}	
 		}
+		
+
 		Price price=new Price();
 		price.setDistance(distance);
-		price.setPrice(distance*es.getPrice_per_km());
+		double i=(item.getItem_weight())*(es.getWeight_charge_per_kg());
+		price.setPrice(((distance*es.getPrice_per_km())+i));
+		System.out.println(i);
+		System.out.println(((distance*es.getPrice_per_km())+i));
 		price.setPrice_per_km(es.getPrice_per_km());
-		
+		price.setItem_weight(item.getItem_weight());
 		return price;
 		
 	}
 
 	@Override
-	public void setEstimatedPrice(EstimatePrice estimatedPrice, long t_id) {
+	public void setEstimatedPrice(EstimatePrice estimatedPrice, long t_id,double charge_per_kg) {
 try {
+			System.out.println(estimatedPrice.getWeight_charge_per_kg());
 			
 			Transporter Trans=tdao.getById(t_id);
 			
@@ -92,6 +99,7 @@ try {
 				//Update
 				EstimatePrice newEstimatedPrice=oldEstimatedPrice.get();
 				newEstimatedPrice.setPrice_per_km(estimatedPrice.getPrice_per_km());
+				newEstimatedPrice.setWeight_charge_per_kg(charge_per_kg);
 				Edao.save(newEstimatedPrice);
 			}
 			else
@@ -116,9 +124,9 @@ try {
 //	    latitude DOUBLE(9, 6) NOT NULL,
 //	    longitude DOUBLE(9, 6) NOT NULL
 //	);
-
-
-
+//
+//
+//
 //INSERT INTO cities (city_name, latitude, longitude)
 //VALUES
 //    ('Mumbai', 19.0760, 72.8777),

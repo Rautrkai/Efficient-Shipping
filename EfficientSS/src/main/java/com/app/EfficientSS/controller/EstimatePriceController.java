@@ -54,12 +54,10 @@ public class EstimatePriceController {
 //		es.setprice(t_id,rate);
 //	}
 	  
-	  @PostMapping("transporter/estimatedprice")
-		public ResponseEntity<String> EstimatedPrice(@RequestBody EstimatePrice estimatedPrice,@RequestParam long t_id){
+	  @PostMapping("transporter/estimatedprice/{charge_per_kg}")
+		public ResponseEntity<String> EstimatedPrice(@RequestBody EstimatePrice estimatedPrice,@RequestParam long t_id,@PathVariable double charge_per_kg){
 		
-		  System.out.println("ali");
-		  System.out.println(estimatedPrice);
-		  	es.setEstimatedPrice(estimatedPrice,t_id);
+		  	es.setEstimatedPrice(estimatedPrice,t_id,charge_per_kg);
 		return ResponseEntity.ok("added");
 				
 		}

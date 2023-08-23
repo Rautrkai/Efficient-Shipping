@@ -8,15 +8,17 @@ export default function EstimatedPrice() {
 
     
   const[Rate,setRate]=useState('')
+  const[charge_per_kg,setcharge_per_kg]=useState('')
   // const[range_200_500,setRange2]=useState('')
   // const[range_500_above,setRange3]=useState('')
 
   const handleClick=(e)=>{
    
-    const EstimatePrice = {price_per_km:Rate}
-    const t_id = JSON.parse(localStorage.getItem('t_id'));
+    const EstimatePrice = {
+      price_per_km: Rate
+    };    const t_id = JSON.parse(localStorage.getItem('t_id'));
     // console.log(itemdetail,cust_id);
-    axios.post(`http://localhost:8282/transporter/estimatedprice`,EstimatePrice,{ params: {
+    axios.post(`http://localhost:8282/transporter/estimatedprice/${charge_per_kg}`,EstimatePrice,{ params: {
       t_id
     }}).then(
       (response)=>{
@@ -45,9 +47,25 @@ export default function EstimatedPrice() {
         <h1>Estimated Price</h1>
         <h5>Fill your estimated price as per the weight of item per kg</h5>
 
-        <FormGroup>
+       
+<FormGroup>
+  <Label for="Weight_charge_per_kg">
+  Weight_charge_per_kg  </Label>
+  <Input
+    id="charge_per_kg"
+    name="charge_per_kg"
+    type="text"
+    placeholder="charge_per_kg"
+    value={charge_per_kg }
+    // value={this.state.range_0_200}
+    onChange={(e)=>setcharge_per_kg(e.target.value)}
+  >
+    
+  </Input>
+</FormGroup>
+<FormGroup>
   <Label for="Rate">
-   Rate per km For 1 kg 
+   Rate per km 
   </Label>
   <Input
     id="Rate"

@@ -3,45 +3,65 @@ import { Button, Table } from 'reactstrap'
 import NavBar from './NavBar'
 import "../styles/Home.css";
 
-// Retrieve the JSON string from localStorage
-const estimateString = localStorage.getItem('price');
 
-// Parse the JSON string back to an object
-const estimate = JSON.parse(estimateString);
+// const estimatet = JSON.parse(localStorage.getItem('estimate'));
+// const range_0_200 = JSON.parse(localStorage.getItem('range_0_200'));
+// const range_500_above = JSON.parse(localStorage.getItem('range_500_above'));
+ const price  = localStorage.getItem('price');
+ const distance  = localStorage.getItem('distance');
+ const price_per_km  = localStorage.getItem('price_per_km');
+ const item_weight  = localStorage.getItem('item_weight');
 
-// Now you can use the 'estimate' object
 
-const price = JSON.parse(localStorage.getItem('price'));
-const distance = JSON.parse(localStorage.getItem('distance'));
-const price_per_km = JSON.parse(localStorage.getItem('price_per_km'));
+
+// const dataObject = JSON.parse(jsonString)
+// const price = dataObject.price;             // 3003.8075492299267
+// const distance = dataObject.distance;       // 120.15230196919707
+// const price_per_km = dataObject.price_per_km; // 25
+
 export default class EstimatedPriceList extends Component {
 
+  
+  
   render() {
+    
   return (
+    
     <div>
     <NavBar/>
     <div style={{paddingTop:"120px", paddingLeft:"20px" , paddingRight:"20px" }}>
     <Table bordered striped>
+
                <thead>
                    <tr>
-                       <th> price</th>
-                       {/* <th> Range 2 (201-500)KMs</th>
-                       <th> Range 3 (above 500)KMs</th> */}
-                       <th> Actions</th>
+                       
+                       <th> price_per_km</th>
+                       <th> total distance</th>
+                       <th> item weight</th>
+                       <th> Total price</th> 
+                        <th> Actions</th>
                    </tr>
                </thead>
                <tbody>
-                        <tr>   
-                                <td> {estimate} </td>   
-                                {/* <td> {range_200_500}</td>
-                                <td> {range_500_above}</td> */}
+                  
+                            <tr>   
+                            <td> {price_per_km}</td>
+                            <td> {parseFloat(distance).toFixed(2)}  Km</td>  
+                            <td> {item_weight}</td>
+                            <td> {parseFloat(price).toFixed(2)} </td>
                                 <td><Button name="submit" href ="/kilometerRangeForm" style={{marginLeft: "20px"}} className="btn btn-info">Proceed</Button></td>
-                        </tr>
-                </tbody>
-    </Table>
+                               
+                           </tr>
+
+                           </tbody>
+           </Table>
+
     </div>
-    </div>
-                   )
-        }
+
+</div>
+                       )
+                   }
+              
+  
 }
 

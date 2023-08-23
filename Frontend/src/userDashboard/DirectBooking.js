@@ -14,11 +14,7 @@ export default class DirectBooking extends Component {
 
     this.state = {
         transporters: [],
-        estimated: {
-            price: null,
-            distance: null,
-            price_per_km:null
-        }    
+            estimated:[]
     }
     // this.addEmployee = this.addEmployee.bind(this);
     
@@ -30,12 +26,18 @@ getTransporterById(t_id){
    
     DirectBookingService.getTransporterById(t_id,item_Id).then(res => {
         this.setState({ estimated: res.data });
-    alert(item_Id);
-   
+    
         // Convert the object to a JSON string and store it in localStorage
-        
-        localStorage.setItem('price', JSON.stringify(res.data));
+        this.setState({ estimated: res.data});
+        // localStorage.setItem('t_id',res.data.transporter.t_id)
+        localStorage.setItem('price',res.data.price)
+        localStorage.setItem('distance',res.data.distance)
+        localStorage.setItem('price_per_km',res.data.price_per_km)
+        localStorage.setItem('item_weight',res.data.item_weight)
+
+    
         console.log(this.state.estimated);
+            
         window.location.href = "/estimatedPriceList";
     });
     

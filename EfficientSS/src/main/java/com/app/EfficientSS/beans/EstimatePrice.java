@@ -23,14 +23,27 @@ public class EstimatePrice {
 	@Column(name="price_per_km")
 	private double price_per_km;
 	
+	@Column(name="Weight_charge_per_kg")
+	private double Weight_charge_per_kg;
+	
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="t_id",referencedColumnName="t_id")
 	private Transporter transporter;
 
-	public EstimatePrice(int estimateId, double price_per_km, Transporter transporter) {
+	
+	public double getWeight_charge_per_kg() {
+		return Weight_charge_per_kg;
+	}
+
+	public void setWeight_charge_per_kg(double weight_charge_per_kg) {
+		Weight_charge_per_kg = weight_charge_per_kg;
+	}
+
+	public EstimatePrice(int estimateId, double price_per_km, double weight_charge_per_kg, Transporter transporter) {
 		super();
 		this.estimateId = estimateId;
 		this.price_per_km = price_per_km;
+		this.Weight_charge_per_kg = weight_charge_per_kg;
 		this.transporter = transporter;
 	}
 

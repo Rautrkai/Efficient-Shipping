@@ -23,7 +23,7 @@ public class Item_Details {
 	@Column(name="item_name",nullable=false)
 	private String item_name;
 	@Column(name="item_weight",nullable=false)
-	private String item_weight;
+	private double item_weight;
 	@Column(name="description")	
 	private String description;
 	@Column(name="pickup_pincode",nullable=false)
@@ -60,7 +60,9 @@ public class Item_Details {
 	private Customer customer;
 
 
-	public Item_Details(int item_Id, String skuId, String item_name, String item_weight, String description,
+
+
+	public Item_Details(int item_Id, String skuId, String item_name, double item_weight, String description,
 			String pickup_pincode, String pickup_state, String pickup_city, String delivery_pincode,
 			String delivery_state, String delivery_city, String delivery_status, String item_image, Date delivery_date,
 			Date pickup_date, String operation_status, Customer customer) {
@@ -115,12 +117,15 @@ public class Item_Details {
 	}
 
 
-	public String getItem_weight() {
+	
+
+
+	public double getItem_weight() {
 		return item_weight;
 	}
 
 
-	public void setItem_weight(String item_weight) {
+	public void setItem_weight(double item_weight) {
 		this.item_weight = item_weight;
 	}
 

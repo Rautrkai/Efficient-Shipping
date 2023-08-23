@@ -7,12 +7,25 @@ public class Price {
 	private double distance;
 	
 	private double price_per_km;
+	
+	private double item_weight;
 
-	public Price(double price, double distance, double price_per_km) {
+	
+
+	public double getItem_weight() {
+		return item_weight;
+	}
+
+	public void setItem_weight(double item_weight) {
+		this.item_weight = item_weight;
+	}
+
+	public Price(double price, double distance, double price_per_km, double item_weight) {
 		super();
 		this.price = price;
 		this.distance = distance;
 		this.price_per_km = price_per_km;
+		this.item_weight = item_weight;
 	}
 
 	public double getPrice() {

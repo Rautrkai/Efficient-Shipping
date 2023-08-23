@@ -9,6 +9,6 @@ public interface EstimatePriceService {
 
 	Price findprice(long t_id, int item_id);
 
-	void setEstimatedPrice(EstimatePrice estimatedPrice, long t_id);
+	void setEstimatedPrice(EstimatePrice estimatedPrice, long t_id, double charge_per_kg);
 
 }

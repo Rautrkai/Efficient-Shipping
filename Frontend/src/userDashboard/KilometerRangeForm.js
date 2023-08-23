@@ -11,23 +11,28 @@ export default class KilometerRangeForm extends Component{
   constructor(props) {
     super(props);
     this.state = {
-        kmrange: "",
+        // kmrange: "",
         t_id: JSON.parse(localStorage.getItem('t_id')),
-        i_id: JSON.parse(localStorage.getItem('i_id')),
-        c_id: JSON.parse(localStorage.getItem('c_id')),
+        item_Id: JSON.parse(localStorage.getItem('item_Id')),
+        cust_id: JSON.parse(localStorage.getItem('cust_id')),
+        price:JSON.parse(localStorage.getItem("price"))
       
     }
   }
-  handleChange1 = (a) => {
-    this.setState({ kmrange: a.target.value });
-    console.log(this.state.kmrange);
+//   handleChange1 = (a) => {
+//     this.setState({ kmrange: a.target.value });
+//     console.log(this.state.kmrange);
 
-}
+// }
 
 submitForm = (e) => {
   
-  console.log(this.state.t_id,this.state.i_id,this.state.c_id,this.state.kmrange);
-    const url = "http://localhost:8080/customer/bidder?t_id=" + this.state.t_id + "&i_id=" + this.state.i_id + "&c_id=" + this.state.c_id + "&kmrange=" + this.state.kmrange;
+  alert(this.state.price)
+  alert(this.state.cust_id)
+  alert(this.state.item_Id)
+  
+  console.log(this.state.t_id,this.state.item_Id,this.state.cust_id,this.state.price);
+    const url = "http://localhost:8080/customer/bidder?t_id=" + this.state.t_id + "&item_id=" + this.state.item_Id + "&cust_id=" + this.state.cust_id + "&price=" + this.state.price;
     fetch(url,{method:"POST"}
     ).then(response => response.json())
             .then(data => 
@@ -53,16 +58,17 @@ submitForm = (e) => {
 
   <Row form>
     <Col md={6}>
-      <FormGroup>
+      {/* <FormGroup>
           <Input
           id="kmrange"
           name="kmrange"
-          placeholder="Enter your total kilomete for item delivery"
+          placeholder="confirm your order"
           type="text"
           value={this.state.kmrange}
           onChange={this.handleChange1}
         />
-      </FormGroup>
+      </FormGroup> */}
+      <h1>confirm your order</h1>
       <FormGroup check>
     <Input type="checkbox"
         />
