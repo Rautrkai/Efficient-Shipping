@@ -139,7 +139,7 @@ export default function RegisterItem() {
       <option>Mumbai</option>
       <option>Kolhapur</option>
       <option>Nashik</option>
-      <option>Jalana</option>
+      <option>Dhule</option>
       <option>Nagpur</option>
     </Input>
   </FormGroup>
@@ -205,10 +205,9 @@ export default function RegisterItem() {
        </option>
       <option>Pune</option>
       <option>Mumbai</option>
-      <option>Jalana</option>
+      <option>Dhule</option>
       <option>Kolhapur</option>
       <option>Nashik</option>
-      <option>Baramati</option>
       <option>Nagpur</option>
     </Input>
   </FormGroup>

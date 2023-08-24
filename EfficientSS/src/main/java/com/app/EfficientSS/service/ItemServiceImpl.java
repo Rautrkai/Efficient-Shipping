@@ -17,10 +17,10 @@ import java.util.*;
 public class ItemServiceImpl implements ItemService{
 
 	@Autowired
-	ItemDao itemDao;
+	private ItemDao itemDao;
 
 	@Autowired
-	CustomerDao Custdao;
+	private CustomerDao Custdao;
 	
 	
 	//register item    

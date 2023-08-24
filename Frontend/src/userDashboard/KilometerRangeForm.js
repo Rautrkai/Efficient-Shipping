@@ -26,14 +26,14 @@ export default class KilometerRangeForm extends Component{
 // }
 
 submitForm = (e) => {
-  
+  alert(this.state.t_id)
   alert(this.state.price)
   alert(this.state.cust_id)
   alert(this.state.item_Id)
   
   console.log(this.state.t_id,this.state.item_Id,this.state.cust_id,this.state.price);
-    const url = "http://localhost:8080/customer/bidder?t_id=" + this.state.t_id + "&item_id=" + this.state.item_Id + "&cust_id=" + this.state.cust_id + "&price=" + this.state.price;
-    fetch(url,{method:"POST"}
+  const url = `http://localhost:8282/customer/bidder/${this.state.item_Id}?t_id=${this.state.t_id}&cust_id=${this.state.cust_id}&price=${this.state.price}`;
+  fetch(url,{method:"POST"}
     ).then(response => response.json())
             .then(data => 
                 {
@@ -45,9 +45,6 @@ submitForm = (e) => {
             window.location.href="/cPayment";
 
 }
-
-   
-
     render() {
     return (
       <div>

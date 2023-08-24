@@ -15,7 +15,7 @@ import com.app.EfficientSS.dao.CustomerDao;
 public class CustomerServiceImpl implements CustomerService {
 
 	@Autowired
-	CustomerDao customerdao;
+	private CustomerDao customerdao;
 	
 
 	@Override

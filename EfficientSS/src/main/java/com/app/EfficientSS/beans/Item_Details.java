@@ -1,15 +1,21 @@
 package com.app.EfficientSS.beans;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Item_Details {
@@ -59,9 +65,18 @@ public class Item_Details {
 	@JoinColumn(name="cust_id",referencedColumnName="cust_id")
 	private Customer customer;
 
+	@JsonIgnore
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(
+	    name = "Item_Detail_Bidder",
+	    joinColumns = @JoinColumn(name = "item_Id"),
+	    inverseJoinColumns = @JoinColumn(name = "b_id")
+	)
+	private List<Bidder> bidder;
 
 
 
+	
 	public Item_Details(int item_Id, String skuId, String item_name, double item_weight, String description,
 			String pickup_pincode, String pickup_state, String pickup_city, String delivery_pincode,
 			String delivery_state, String delivery_city, String delivery_status, String item_image, Date delivery_date,
@@ -84,6 +99,7 @@ public class Item_Details {
 		this.pickup_date = pickup_date;
 		this.operation_status = operation_status;
 		this.customer = customer;
+		
 	}
 
 
@@ -117,7 +133,7 @@ public class Item_Details {
 	}
 
 
-	
+
 
 
 	public double getItem_weight() {

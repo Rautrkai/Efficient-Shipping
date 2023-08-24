@@ -1,12 +1,17 @@
 package com.app.EfficientSS.beans;
 
-import java.util.List;
+import java.util.List; 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -41,9 +46,17 @@ public class Customer {
 	@JsonIgnore
 	@OneToMany(mappedBy="customer")
 	private List<Feedback> feedback_complaint;
+	
+	
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(
+	    name = "Customer_Bidder",joinColumns = @JoinColumn(name = "cust_id"),inverseJoinColumns = @JoinColumn(name = "b_id")
+	)
+	private List<Bidder> bidders;
 
 	
 	
+
 	public Customer(int cust_id, String cust_fName, String cust_mName, String cust_lName, String cust_email_id,
 			String cust_password, String cust_phone_no, String cust_address, String cust_blacklist,
 			List<Item_Details> item_detail, List<Feedback> feedback_complaint) {
@@ -59,6 +72,7 @@ public class Customer {
 		this.cust_blacklist = cust_blacklist;
 		this.item_detail = item_detail;
 		this.feedback_complaint = feedback_complaint;
+		
 	}
 
 	public List<Feedback> getFeedback_complaint() {
@@ -155,7 +169,6 @@ public class Customer {
 	}
 
 	
-
 	
 	
 

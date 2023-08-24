@@ -23,7 +23,7 @@ export default class DirectBooking extends Component {
 
 getTransporterById(t_id){
     console.log(t_id);
-   
+   alert(t_id)
     DirectBookingService.getTransporterById(t_id,item_Id).then(res => {
         this.setState({ estimated: res.data });
     
@@ -34,6 +34,7 @@ getTransporterById(t_id){
         localStorage.setItem('distance',res.data.distance)
         localStorage.setItem('price_per_km',res.data.price_per_km)
         localStorage.setItem('item_weight',res.data.item_weight)
+        localStorage.setItem('t_id',t_id)
 
     
         console.log(this.state.estimated);
