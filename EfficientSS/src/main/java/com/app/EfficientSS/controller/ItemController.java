@@ -33,9 +33,6 @@ public class ItemController{
 	@PostMapping("customer/itemdetails")
 	public ResponseEntity<HttpStatus> itemRegistration(@RequestBody Item_Details itemdetail,@RequestParam int cust_id) {
 
-		System.out.println(itemdetail);
-		System.out.println(cust_id);
-		System.out.println("ali");
 	  	return itemService.saveitem(itemdetail,cust_id);
 	  	
  }
@@ -43,7 +40,7 @@ public class ItemController{
 	@GetMapping("customer/itemdetails/{cust_id}")
 	public ResponseEntity<List<Item_Details>> getAllItemsForCustomer(@PathVariable int cust_id)
 	{
-		System.out.println("ali");
+	
 		List<Item_Details> itemlist=itemService.getAllItemsForCustomer(cust_id);
 		if(itemlist!=null)
 			return  new ResponseEntity<>(itemlist,HttpStatus.OK);

@@ -1,7 +1,10 @@
 package com.app.EfficientSS.service;
 
+import java.util.Date; 
 import java.util.List;
 import java.util.Optional;
+import java.text.SimpleDateFormat;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
@@ -9,14 +12,21 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.app.EfficientSS.beans.Item_Details;
 import com.app.EfficientSS.beans.Transporter;
+import com.app.EfficientSS.dao.ItemDao;
 import com.app.EfficientSS.dao.TransporterDao;
+
+
 
 @Service
 public class TransporterServiceImpl implements TransporterService {
 
 		@Autowired
 	    private TransporterDao Transporterdao;
+		
+		@Autowired
+		private ItemDao itemDao;
 	    
 	    public void createTransporter(Transporter transporter) {
 	    	transporter.setT_blacklist("clear");
@@ -50,7 +60,8 @@ public class TransporterServiceImpl implements TransporterService {
 			Transporter t=Transporterdao.findByEmailId(email);
 			if(t.getT_blacklist().equalsIgnoreCase("clear"))
 			return t;
-			else return null;
+			else 
+				return null;
 		}
 
 		@Override
@@ -87,6 +98,38 @@ public class TransporterServiceImpl implements TransporterService {
 			List<Transporter> tlist=Transporterdao.findVerifiedTrans();
 			
 			return tlist;
+		}
+
+
+
+		@Override
+		public Item_Details set_PickUpDeliveryDate(int item_Id, String pickupDate, String deliveryDate) {
+			try {
+				SimpleDateFormat formatter1=new SimpleDateFormat("yyyy-MM-dd");
+				
+				Date d1=formatter1.parse(pickupDate);
+				
+				SimpleDateFormat formatter2=new SimpleDateFormat("yyyy-MM-dd");
+				
+				Date d2=formatter2.parse(deliveryDate);
+				
+				Item_Details idetail=itemDao.findByItemId(item_Id);
+				
+				idetail.setPickup_date(d1);
+				
+				idetail.setDelivery_date(d2);
+
+				Item_Details i=itemDao.save(idetail);
+				if(i!=null)
+					return i;
+				else
+					return null;
+			} catch (Exception e) {
+				
+				System.out.println(e.getMessage());
+				return null;
+			}
+			
 		}
 
 	

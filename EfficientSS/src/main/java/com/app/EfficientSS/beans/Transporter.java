@@ -5,9 +5,11 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -52,8 +54,10 @@ public class Transporter {
 	@OneToOne(mappedBy="transporter")
 	private EstimatePrice esprice;
 	
+	@JsonIgnore
+	@OneToMany(mappedBy="transporter")
+	private List<Payment> payment;
 	
-
 	public EstimatePrice getEsprice() {
 		return getEsprice();
 	}
@@ -62,9 +66,23 @@ public class Transporter {
 		this.esprice = esprice;
 	}
 
+	@JsonIgnore
+	@OneToMany(mappedBy="transporter")
+	private List<Bidder> bidder;
+
+
+
+	public List<Bidder> getBidder() {
+		return bidder;
+	}
+
+	public void setBidder(List<Bidder> bidder) {
+		this.bidder = bidder;
+	}
+	
 	public Transporter(long t_id, String t_full_name, String t_email_id, String t_password, String t_ph_no,
 			String t_address, String t_verification, String t_blacklist, List<TransporterDriver> driver,
-			List<Feedback> feedback_complaint, EstimatePrice esprice) {
+			List<Feedback> feedback_complaint, EstimatePrice esprice, List<Bidder> bidder) {
 		super();
 		this.t_id = t_id;
 		this.t_full_name = t_full_name;
@@ -77,6 +95,7 @@ public class Transporter {
 		this.driver = driver;
 		this.feedback_complaint = feedback_complaint;
 		this.esprice = esprice;
+		this.bidder = bidder;
 	}
 
 	public Transporter() {
@@ -243,16 +262,6 @@ public class Transporter {
 	}
 
 
-
-
-
-	@Override
-	public String toString() {
-		return "Transporter [t_id=" + t_id + ", t_full_name=" + t_full_name + ", t_email_id=" + t_email_id
-				+ ", t_password=" + t_password + ", t_ph_no=" + t_ph_no + ", t_address=" + t_address
-				+ ", t_verification=" + t_verification + ", t_blacklist=" + t_blacklist + ", driver=" + driver
-				+ ", feedback_complaint=" + feedback_complaint + "]";
-	}
 
 
 

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.EfficientSS.beans.Item_Details;
 import com.app.EfficientSS.beans.Transporter;
 import com.app.EfficientSS.service.TransporterService;
 
@@ -88,4 +89,14 @@ public class TransporterController {
         		else
         			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+    
+    @PutMapping("transporter/pickupdeliverydate")
+	public ResponseEntity<String> setPickUpDeliveryDate(@RequestParam int item_Id,@RequestParam String pickupDate,@RequestParam String deliveryDate){		//Item_id
+		
+		Item_Details item =transporterService.set_PickUpDeliveryDate(item_Id,pickupDate,deliveryDate);
+		if(item!=null)
+			return ResponseEntity.ok("deleted");        		
+		else
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
 }

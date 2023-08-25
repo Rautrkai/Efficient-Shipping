@@ -1,0 +1,90 @@
+/*.footer {
+  width: 100%;
+  height: 200px;
+  background-color: #121619;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 10px;
+}
+
+.socialMedia svg {
+  color: white;
+  margin: 10px;
+  font-size: 40px;
+  cursor: pointer;
+  
+}
+
+.footer p {
+  color: white;
+}
+/*
+
+/* Footer styles */
+.footer {
+  background-color: #212121;
+  color: #ffffff;
+  padding: 40px 0;
+  text-align: center;
+}
+
+.footer a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.footer a:hover {
+  color: #f39c12;
+}
+
+.footer .social-icons {
+  margin-top: 20px;
+}
+
+.footer .social-icons a {
+  margin: 0 10px;
+  font-size: 18px;
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.footer .social-icons a:hover {
+  color: #f39c12;
+}
+
+/* Media query for responsiveness */
+@media (max-width: 700px) {
+  .footer .social-icons {
+    margin-top: 10px;
+  }
+
+  .footer .social-icons a {
+    font-size: 16px;
+  }
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  /* Add this if you have a main content section above the footer */
+  flex: 1;
+}
+
+.footer {
+  /* Keep your existing styles */
+  background-color: #212121;
+  color: #ffffff;
+  padding: 40px 0;
+  text-align: center;
+  /* Add these properties */
+  margin-top: auto;
+}
+

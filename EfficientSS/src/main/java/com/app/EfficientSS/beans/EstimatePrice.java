@@ -75,11 +75,7 @@ public class EstimatePrice {
 		this.transporter = transporter;
 	}
 
-	@Override
-	public String toString() {
-		return "EstimatePrice [estimateId=" + estimateId + ", price_per_km=" + price_per_km + ", transporter="
-				+ transporter + "]";
-	}
+	
 	
 	
 }

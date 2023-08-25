@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
 
+import com.app.EfficientSS.beans.Item_Details;
 import com.app.EfficientSS.beans.Transporter;
 
 public interface TransporterService {
@@ -24,6 +25,8 @@ public interface TransporterService {
 	void updateBlaclist(Long t_id, Transporter transporter);
 
 	List<Transporter> getVerifiedTranspoter();
+
+	Item_Details set_PickUpDeliveryDate(int item_Id, String pickupDate, String deliveryDate);
 
 	 
 

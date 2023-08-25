@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -46,7 +47,7 @@ public class Item_Details {
 	private String delivery_city;
 	@Column(name="delivery_status")
 	private String delivery_status;
-	@Column(name="item_image",nullable=false)
+	@Column(name="item_image")
 	private String item_image;
 	@Column(name="delivery_date")
 	private Date delivery_date;
@@ -61,26 +62,33 @@ public class Item_Details {
 	}
 
 
+    @JsonIgnore
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="cust_id",referencedColumnName="cust_id")
 	private Customer customer;
 
 	@JsonIgnore
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(
-	    name = "Item_Detail_Bidder",
-	    joinColumns = @JoinColumn(name = "item_Id"),
-	    inverseJoinColumns = @JoinColumn(name = "b_id")
-	)
-	private List<Bidder> bidder;
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL,mappedBy="item_detail")
+    private List<Bidder> bidder;
+	
 
+	@OneToMany(mappedBy="item_detail")
+	private List<Payment> payment;
 
+	public List<Bidder> getBidder() {
+		return bidder;
+	}
+
+	public void setBidder(List<Bidder> bidder) {
+		this.bidder = bidder;
+	}
 
 	
+
 	public Item_Details(int item_Id, String skuId, String item_name, double item_weight, String description,
 			String pickup_pincode, String pickup_state, String pickup_city, String delivery_pincode,
 			String delivery_state, String delivery_city, String delivery_status, String item_image, Date delivery_date,
-			Date pickup_date, String operation_status, Customer customer) {
+			Date pickup_date, String operation_status, Customer customer, List<Bidder> bidder) {
 		super();
 		this.item_Id = item_Id;
 		this.skuId = skuId;
@@ -99,122 +107,96 @@ public class Item_Details {
 		this.pickup_date = pickup_date;
 		this.operation_status = operation_status;
 		this.customer = customer;
-		
+		this.bidder = bidder;
 	}
-
 
 	public int getItem_Id() {
 		return item_Id;
 	}
 
-
 	public void setItem_Id(int item_Id) {
 		this.item_Id = item_Id;
 	}
-
 
 	public String getSkuId() {
 		return skuId;
 	}
 
-
 	public void setSkuId(String skuId) {
 		this.skuId = skuId;
 	}
-
-
+	
 	public String getItem_name() {
 		return item_name;
 	}
-
 
 	public void setItem_name(String item_name) {
 		this.item_name = item_name;
 	}
 
-
-
-
-
 	public double getItem_weight() {
 		return item_weight;
 	}
-
 
 	public void setItem_weight(double item_weight) {
 		this.item_weight = item_weight;
 	}
 
-
 	public String getDescription() {
 		return description;
 	}
-
 
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
-
 	public String getPickup_pincode() {
 		return pickup_pincode;
 	}
-
 
 	public void setPickup_pincode(String pickup_pincode) {
 		this.pickup_pincode = pickup_pincode;
 	}
 
-
 	public String getPickup_state() {
 		return pickup_state;
 	}
-
 
 	public void setPickup_state(String pickup_state) {
 		this.pickup_state = pickup_state;
 	}
 
-
 	public String getPickup_city() {
 		return pickup_city;
 	}
-
 
 	public void setPickup_city(String pickup_city) {
 		this.pickup_city = pickup_city;
 	}
 
-
 	public String getDelivery_pincode() {
 		return delivery_pincode;
 	}
-
 
 	public void setDelivery_pincode(String delivery_pincode) {
 		this.delivery_pincode = delivery_pincode;
 	}
 
-
 	public String getDelivery_state() {
 		return delivery_state;
 	}
-
 
 	public void setDelivery_state(String delivery_state) {
 		this.delivery_state = delivery_state;
 	}
 
-
 	public String getDelivery_city() {
 		return delivery_city;
 	}
 
-
 	public void setDelivery_city(String delivery_city) {
 		this.delivery_city = delivery_city;
 	}
-
 
 	public String getDelivery_status() {
 		return delivery_status;
@@ -276,17 +258,9 @@ public class Item_Details {
 	}
 
 
-	@Override
-	public String toString() {
-		return "Item_Details [item_Id=" + item_Id + ", skuId=" + skuId + ", item_name=" + item_name + ", item_weight="
-				+ item_weight + ", description=" + description + ", pickup_pincode=" + pickup_pincode
-				+ ", pickup_state=" + pickup_state + ", pickup_city=" + pickup_city + ", delivery_pincode="
-				+ delivery_pincode + ", delivery_state=" + delivery_state + ", delivery_city=" + delivery_city
-				+ ", delivery_status=" + delivery_status + ", item_image=" + item_image + ", delivery_date="
-				+ delivery_date + ", pickup_date=" + pickup_date + ", operation_status=" + operation_status
-				+ ", customer=" + customer + "]";
-	}
-    
+
+
+
 	
 //	DELIMITER //
 //

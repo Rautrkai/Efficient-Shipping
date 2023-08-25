@@ -47,19 +47,30 @@ public class Customer {
 	@OneToMany(mappedBy="customer")
 	private List<Feedback> feedback_complaint;
 	
-	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(
-	    name = "Customer_Bidder",joinColumns = @JoinColumn(name = "cust_id"),inverseJoinColumns = @JoinColumn(name = "b_id")
-	)
-	private List<Bidder> bidders;
 
+	@JsonIgnore
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL,mappedBy="customer")
+	private List<Bidder> bidder;
 	
+	@JsonIgnore
+	@OneToMany(mappedBy="customer")
+	private List<Payment> payment;
 	
+	public List<Bidder> getBidder() {
+		return bidder;
+	}
+
+
+
+	public void setBidder(List<Bidder> bidder) {
+		this.bidder = bidder;
+	}
+
+
 
 	public Customer(int cust_id, String cust_fName, String cust_mName, String cust_lName, String cust_email_id,
 			String cust_password, String cust_phone_no, String cust_address, String cust_blacklist,
-			List<Item_Details> item_detail, List<Feedback> feedback_complaint) {
+			List<Item_Details> item_detail, List<Feedback> feedback_complaint, List<Bidder> bidder) {
 		super();
 		this.cust_id = cust_id;
 		this.cust_fName = cust_fName;
@@ -72,8 +83,10 @@ public class Customer {
 		this.cust_blacklist = cust_blacklist;
 		this.item_detail = item_detail;
 		this.feedback_complaint = feedback_complaint;
-		
+		this.bidder = bidder;
 	}
+
+
 
 	public List<Feedback> getFeedback_complaint() {
 		return feedback_complaint;
@@ -167,10 +180,6 @@ public class Customer {
 	public void setItem_detail(List<Item_Details> item_detail) {
 		this.item_detail = item_detail;
 	}
-
-	
-	
-	
 
 	
 }

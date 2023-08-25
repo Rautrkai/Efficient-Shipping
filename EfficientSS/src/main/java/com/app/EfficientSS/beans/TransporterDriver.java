@@ -94,11 +94,7 @@ public class TransporterDriver {
 	public void setPhoneNumber(int phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	@Override
-	public String toString() {
-		return "TransporterDriver [id=" + id + ", name=" + name + ", licenseNumber=" + licenseNumber + ", phoneNumber="
-				+ phoneNumber + "]";
-	}
+
     
     
     
