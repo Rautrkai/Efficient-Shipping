@@ -30,19 +30,10 @@ export default function RegisterItem() {
       cust_id
     }}).then(
       (response)=>{
-         // toast.success('login successfull');
-          console.log("success");
-          console.log(response);
-           window.location.href = "/items";
-          //localStorage.setItem('c_id',response.data.c_id)
-          
+                   window.location.href = "/items";
       },
       (error)=>{
-       
-          // alert("Invalid Login Details",error);
-          toast.error('invalid login');
           console.log(error);
-          console.log("Error");
       }
   );
   } 

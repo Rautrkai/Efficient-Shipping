@@ -1,102 +1,70 @@
-import axios from "axios";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
-import { Button, Card, CardText, CardTitle, Col, Form, FormGroup, Input, Label, Row } from "reactstrap";
-import custLoginImg from "../assets/custLogin.jpg";
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
-import "../styles/Contact.css";
+import React from 'react';
+import {
+  MDBBtn,
+  MDBContainer,
+  MDBRow,
+  MDBCol,
+  MDBInput
+}
+from 'mdb-react-ui-kit';
 
-function AdminLogin() {
-
-  const [admin_email_id, setEmail] = useState('')
-  const [admin_password, setPassword] = useState('')
-
-  const handleClick = () => {
-
-    const adminlogin = { admin_email_id, admin_password }
-
-    console.log(adminlogin)
-    axios.post(`http://localhost:8282/home/adminlogin`, adminlogin).then(
-      (response) => {
-        // toast.success('login successfull');
-        console.log("success");
-        console.log(response);
-        window.location.href = "/manageCustomers";
-        // localStorage.setItem('c_id',response.data.c_id)
-
-      },
-      (error) => {
-
-        alert("Invalid Login Details", error);
-        toast.error('invalid login');
-        console.log(error);
-        console.log("Error");
-      }
-    );
-  };
-
-
-
+function App() {
   return (
-    <div>
-      <Navbar />
-      <div className="contact">
-        <div
-          className="leftSide"
-          style={{ backgroundImage: `url(${custLoginImg})` }}
-        >
-          {/* //leftside */}
+    <MDBContainer className="my-5 gradient-form">
 
-        </div>
-        <div className="rightSide">
-          <h1> Login as Admin</h1>
+      <MDBRow>
 
-          <Form inline>
-            <FormGroup className="mb-2 me-sm-2 mb-sm-0">
-              <Label
-                className="me-sm-2"
-                for="admin_email_id"
-              >
-                Email
-              </Label>
-              <Input
-                id="admin_email_id"
-                name="admin_email_id"
-                placeholder="Enter Email id"
-                type="email"
-                value={admin_email_id}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </FormGroup>
-            <FormGroup className="mb-2 me-sm-2 mb-sm-0">
-              <Label
-                className="me-sm-2"
-                for="admin_password"
-              >
-                Password
-              </Label>
-              <Input
-                id="admin_password"
-                name="admin_password"
-                placeholder="Enter Your Password"
-                type="password"
-                value={admin_password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </FormGroup>
-            <Button
-              onClick={handleClick}
-            >
-              Submit
-            </Button>
-          </Form>
-        </div>
-      </div>
-      <Footer />
-    </div>
+        <MDBCol col='6' className="mb-5">
+          <div className="d-flex flex-column ms-5">
+
+            <div className="text-center">
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
+                style={{width: '185px'}} alt="logo" />
+              <h4 className="mt-1 mb-5 pb-1">We are The Lotus Team</h4>
+            </div>
+
+            <p>Please login to your account</p>
+
+
+            <MDBInput wrapperClass='mb-4' label='Email address' id='form1' type='email'/>
+            <MDBInput wrapperClass='mb-4' label='Password' id='form2' type='password'/>
+
+
+            <div className="text-center pt-1 mb-5 pb-1">
+              <MDBBtn className="mb-4 w-100 gradient-custom-2">Sign in</MDBBtn>
+              <a className="text-muted" href="#!">Forgot password?</a>
+            </div>
+
+            <div className="d-flex flex-row align-items-center justify-content-center pb-4 mb-4">
+              <p className="mb-0">Don't have an account?</p>
+              <MDBBtn outline className='mx-2' color='danger'>
+                Danger
+              </MDBBtn>
+            </div>
+
+          </div>
+
+        </MDBCol>
+
+        <MDBCol col='6' className="mb-5">
+          <div className="d-flex flex-column  justify-content-center gradient-custom-2 h-100 mb-4">
+
+            <div className="text-white px-3 py-4 p-md-5 mx-md-4">
+              <h4 class="mb-4">We are more than just a company</h4>
+              <p class="small mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+
+          </div>
+
+        </MDBCol>
+
+      </MDBRow>
+
+    </MDBContainer>
   );
 }
 
-export default AdminLogin;
+export default App;

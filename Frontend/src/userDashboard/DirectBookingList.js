@@ -6,7 +6,7 @@ import Cookies from 'universal-cookie';
 
 const cookie = new Cookies();
 const  a_end_date= cookie.get('a_end_date');
-    // console.log(a_end_date);
+
 
 export default class DirectBookingList extends Component{
 
@@ -31,9 +31,9 @@ getItemsById(item_Id)
 
 getItemsByIdAuction(item_Id)
 {
-    console.log(item_Id);
-    localStorage.setItem('item_id',item_Id);
-   window.location.href = "/auctionItemForm"
+//     console.log(item_Id);
+//     localStorage.setItem('item_id',item_Id);
+//    window.location.href = "/auctionItemForm"
 
    
 }

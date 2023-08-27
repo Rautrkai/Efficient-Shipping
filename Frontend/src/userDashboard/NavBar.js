@@ -64,7 +64,7 @@ export default function NavBar() {
        
       </Nav>
       <NavItem>
-      <NavLink onClick={onLogOutClick} href="/login">
+      <NavLink onClick={onLogOutClick} href="/contact">
        Logout
       </NavLink>
       </NavItem>

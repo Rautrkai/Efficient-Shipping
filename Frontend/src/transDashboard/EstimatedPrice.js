@@ -17,24 +17,21 @@ export default function EstimatedPrice() {
     const EstimatePrice = {
       price_per_km: Rate
     };    const t_id = JSON.parse(localStorage.getItem('t_id'));
-    // console.log(itemdetail,cust_id);
+  
     axios.post(`http://localhost:8282/transporter/estimatedprice/${Weight_charge_per_kg}`,EstimatePrice,{ params: {
       t_id
     }}).then(
       (response)=>{
-         // toast.success('login successfull');
-          console.log("success");
-          console.log(response);
+         
            window.location.href = "/transSetting";
-          //localStorage.setItem('c_id',response.data.c_id)
+          
           
       },
       (error)=>{
        
-          // alert("Invalid Login Details",error);
+          
           toast.error('invalid login');
-          console.log(error);
-          console.log("Error");
+          
       }
   );
   } 

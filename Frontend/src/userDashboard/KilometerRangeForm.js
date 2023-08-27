@@ -22,10 +22,7 @@ export default class KilometerRangeForm extends Component{
 
 
 submitForm = (e) => {
-  alert(this.state.t_id)
-  alert(this.state.price)
-  alert(this.state.cust_id)
-  alert(this.state.item_Id)
+ 
   
   const url = `http://localhost:8282/customer/bidder/${this.state.item_Id}?t_id=${this.state.t_id}&cust_id=${this.state.cust_id}&price=${this.state.price}`;
   fetch(url, { method: "POST" })
@@ -37,9 +34,6 @@ submitForm = (e) => {
   })
   .then(data => {
   
-    
-    // Redirect to another page after successful booking
-   
   })
   .catch(error => {
     alert("Your product is added for booking");
