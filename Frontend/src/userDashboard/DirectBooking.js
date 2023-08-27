@@ -16,7 +16,7 @@ export default class DirectBooking extends Component {
         transporters: [],
             estimated:[]
     }
-  
+    // this.addEmployee = this.addEmployee.bind(this);
     
 }
 
@@ -28,6 +28,7 @@ getTransporterById(t_id){
     
         // Convert the object to a JSON string and store it in localStorage
         this.setState({ estimated: res.data});
+        // localStorage.setItem('t_id',res.data.transporter.t_id)
         localStorage.setItem('price',res.data.price)
         localStorage.setItem('distance',res.data.distance)
         localStorage.setItem('price_per_km',res.data.price_per_km)
@@ -47,8 +48,8 @@ getTransporterById(t_id){
 componentDidMount(){
     DirectBookingService.getTransporters().then((res) => {
         this.setState({ transporters: res.data});
+        console.log(this.state.transporters);
     });
-
 }
 
 
@@ -61,9 +62,9 @@ render() {
               <thead>
                 <tr>
                   <th>No</th>
-                  <th> Transporter Full Name  </th>
-                  <th>Transporter Address </th>
-                  <th>Estimated Price</th>
+                  <th> Transporter Name  </th>
+                  <th>Transporter contact</th>
+                  <th> view Estimated Price</th>
 
                 
                 </tr>
@@ -75,8 +76,11 @@ render() {
                                         <tr key = {transporter.t_id}>
                                             <td>{transporter.t_id}</td>
                                              <td> { transporter.t_full_name} </td>   
-                                             <td> {transporter.t_address}</td>
-                                             <td>                                      <button style={{marginLeft: "20px"}} 
+                                             <td> {transporter.t_ph_no}</td>
+                                             <td>
+                                             
+                                                 {/* <button style={{marginLeft: "10px"}} onClick={ () => this.viewEmployee(employee.t_id)} className="btn btn-info">View </button> */}
+                                                 <button style={{marginLeft: "20px"}} 
                                                   onClick={ () => this.getTransporterById(transporter.t_id,item_Id)} 
                                                   className="btn btn-info">View estimated Price </button>
                                              </td>

@@ -13,6 +13,9 @@ export default function FeedBack() {
   const handleClick=(e)=>{
     
     const cust_id = JSON.parse(localStorage.getItem('cust_id'));
+
+  // console.log("c_id is "+c_id);
+  // console.log("i_id" +i_id);
     const customer = {description}
     alert(description);
     const url = "http://localhost:8282/customer/feedback?cust_id=" +cust_id;

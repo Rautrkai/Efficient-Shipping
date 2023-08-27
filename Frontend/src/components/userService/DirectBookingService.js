@@ -46,14 +46,18 @@ const API12 = "http://localhost:8282/transporter/selectedBidders";
 
    // get estimate price by transported Id
 
-    getTransporterById(t_id,item_Id){ 
+    getTransporterById(t_id,item_Id){
         let url = `${API}/${t_id}/${encodeURIComponent(item_Id)}`;
+        console.log(url);
         const esti = axios.get(url);
+        console.log(esti);
+    
         return esti;
        
     }
 
     // verfication of transporter
+    
     getTransporterById1(t_id){
         console.log(t_id);
         console.log(API2);

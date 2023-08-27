@@ -20,7 +20,7 @@ componentDidMount(){
 
   DirectBookingService.getPayments().then((res) => {
       this.setState({ payments: res.data});
-    
+      console.log(this.state.payments);
   });
 
  

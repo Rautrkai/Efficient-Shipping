@@ -14,7 +14,8 @@ export default function FeedBack() {
     
     const t_id = JSON.parse(localStorage.getItem('t_id'));
 
-  
+  // console.log("c_id is "+c_id);
+  // console.log("i_id" +i_id);
     const customer = {description}
     
     const url = "http://localhost:8282/transporter/feedback?t_id=" +t_id;
@@ -26,7 +27,7 @@ export default function FeedBack() {
     }).then(()=>{
       alert("your feedback is added")
       window.location.href="/transFeedback";
-      
+      console.log("new feedback added")
     })
   } 
 

@@ -18,7 +18,7 @@ function Navbar() {
           <Link to="/"> Home </Link>
           <Link to="/about"> About </Link>
           <Link to="/menu"> Services </Link>
-          <Link to="/login"> Login </Link>
+          <Link to="/contact"> Login </Link>
           <Link to="/register"> Register </Link>
           <Link to="/custLogin">custLogin</Link>
         </div>

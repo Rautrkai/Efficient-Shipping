@@ -64,13 +64,15 @@ function CustomerLogin() {
       Email
     </Label>
     <Input
-      id="cust_email_id"
-      name="cust_email_id"
-      placeholder="Enter Email"
-      type="email"
-      value={cust_email_id}
-      onChange={(e)=>setEmail(e.target.value)}
-    />
+  id="cust_email_id"
+  name="cust_email_id"
+  placeholder="Enter Email"
+  type="email"
+  value={cust_email_id}
+  onChange={(e) => setEmail(e.target.value)}
+  required  // Add the required attribute
+/>
+
   </FormGroup>
   <FormGroup className="mb-2 me-sm-2 mb-sm-0">
     <Label

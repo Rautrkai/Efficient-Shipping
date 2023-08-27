@@ -1,76 +1,113 @@
-import React, { useState } from 'react'
-import NavBar from './NavBar'
-// import "../styles/Home.css";
-import { FormGroup, Input,Label,FormText,Form, Button } from 'reactstrap';
+import React, { useState } from 'react';
+import NavBar from './NavBar';
+import { FormGroup, Input, Label, Form, Button } from 'reactstrap';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
 export default function RegisterItem() {
+  const [item_name, setItemName] = useState('');
+  const [item_weight, setItemWeight] = useState('');
+  const [pickup_date, setPickupDate] = useState('');
+  const [pickup_pincode, setPickupLocation] = useState('');
+  const [pickup_state, setPickupState] = useState('');
+  const [pickup_city, setPickupCity] = useState('');
+  const [delivery_date, setDeliveryDate] = useState('');
+  const [delivery_city, setDeliveryCity] = useState('');
+  const [delivery_state, setDeliveryState] = useState('');
+  const [delivery_pincode, setDeliveryLocation] = useState('');
+  const [description, setDescription] = useState('');
+  const [item_image, setItemImage] = useState('');
+  const [isChecked, setIsChecked] = useState(false);
 
-  const[item_name,setItemName]=useState('')
-  const[item_weight,setItemWeight]=useState('')
-  const[pickup_date,setPickupDate]=useState('')
-  const[pickup_pincode,setPickupLocation]=useState('')
-  const[pickup_state,setPickupState]=useState('')
-  const[pickup_city,setPickupCity]=useState('')
-  const[delivery_date,setDeliveryDate]=useState('')
-  const[delivery_city,setDeliveryCity]=useState('')
-  const[delivery_state,setDeliveryState]=useState('')
-  const[delivery_status,setDeliveryStatus]=useState('')
-  const[delivery_pincode,setDeliveryLocation]=useState('')
-  const[description,setDescription]=useState('')
-  const[item_image,setItemImage]=useState('')
-  
-  const handleClick=(e)=>{
-   
-    const itemdetail = {item_name,item_weight,description,pickup_pincode,pickup_state,pickup_city,delivery_pincode,delivery_state,delivery_city,delivery_status,item_image,delivery_date,pickup_date}
+  const handleClick = (e) => {
+    e.preventDefault();
+
+    if (
+      !item_name ||
+      !item_weight ||
+      !pickup_state ||
+      !pickup_city ||
+      !pickup_pincode ||
+      !delivery_state ||
+      !delivery_city ||
+      !delivery_pincode ||
+      !description ||
+      !item_image ||
+      !isChecked
+    ) {
+      alert('Please fill  all fields ');
+      return;
+    }
+
+    const itemdetail = {
+      item_name,
+      item_weight,
+      description,
+      pickup_pincode,
+      pickup_state,
+      pickup_city,
+      delivery_pincode,
+      delivery_state,
+      delivery_city,
+      item_image,
+      delivery_date,
+      pickup_date,
+    };
+
     const cust_id = JSON.parse(localStorage.getItem('cust_id'));
-    // console.log(itemdetail,cust_id);
-    axios.post(`http://localhost:8282/customer/itemdetails`,itemdetail,{ params: {
-      cust_id
-    }}).then(
-      (response)=>{
-                   window.location.href = "/items";
-      },
-      (error)=>{
+
+    axios
+      .post(`http://localhost:8282/customer/itemdetails`, itemdetail, {
+        params: {
+          cust_id,
+        },
+      })
+      .then(
+        (response) => {
+          console.log('success');
+          console.log(response);
+          window.location.href = '/items';
+        },
+        (error) => {
+          toast.error('An error occurred while submitting the form.');
           console.log(error);
-      }
-  );
-  } 
+          console.log('Error');
+        }
+      );
+  };
+
   return (
     <div>
-      <NavBar/>
-      <Form style={{paddingTop:"120px"}}>
-          <h1>Register Item</h1><br/>
-  
-  
-  <FormGroup>
-  <Label for="item_name">
-      Item Name
-    </Label>
-    <Input
-      id="item_name"
-      name="item_name"
-      placeholder="Item Name"
-      type="text"
-      value={item_name}
-      onChange={(e)=>setItemName(e.target.value)}
-    />
-  </FormGroup>
- 
-  <FormGroup>
-  <Label for="item_weight">
-      Item Weight ( in kgs)
-    </Label>
-    <Input
-      id="item_weight"
-      name="item_weight"
-      placeholder="Item Weight"
-      type="text"
-      value={item_weight}
-      onChange={(e)=>setItemWeight(e.target.value)}
-    />
-  </FormGroup>
+      <NavBar />
+      <Form style={{ paddingTop: '120px' }}>
+        <h1>Register Item</h1>
+        <br />
+
+        <FormGroup>
+          <Label for="item_name">Item Name</Label>
+          <Input
+            id="item_name"
+            name="item_name"
+            placeholder="Item Name"
+            type="text"
+            value={item_name}
+            onChange={(e) => setItemName(e.target.value)}
+            required
+          />
+        </FormGroup>
+
+        <FormGroup>
+          <Label for="item_weight">Item Weight (in kgs)</Label>
+          <Input
+            id="item_weight"
+            name="item_weight"
+            placeholder="Item Weight"
+            type="number"
+            value={item_weight}
+            onChange={(e) => setItemWeight(e.target.value)}
+            required
+          />
+        </FormGroup>
   
   <FormGroup hidden>
     <Label for="pickup_date" >
@@ -85,17 +122,7 @@ export default function RegisterItem() {
       onChange={(e)=>setPickupDate(e.target.value)}
     />
   </FormGroup>
-  {/* <FormGroup>
-    <Label for="exampleTime">
-      Pickup Time
-    </Label>
-    <Input
-      id="exampleTime"
-      name="Pickup time"
-      placeholder="Pickup time "
-      type="time"
-    />
-  </FormGroup> */}
+ 
    <FormGroup>
     <Label for="pickup_state">
       Pickup State
@@ -242,21 +269,24 @@ export default function RegisterItem() {
       value={item_image}
       onChange={(e)=>setItemImage(e.target.value)}
     />
-
-  </FormGroup>
-  <FormGroup check>
-    <Input type="checkbox" />
-    <Label check>
-      Check me out
-    </Label>
-    
-  </FormGroup>
+ </FormGroup>
+          <FormGroup check>
+          <Input
+            type="checkbox"
+            checked={isChecked}
+            onChange={(e) => setIsChecked(e.target.checked)}
+            required
+          />
+          <Label check>
+          accept the Terms & Conditions
+          </Label>
+        </FormGroup>
   <Button
   onClick={handleClick}>
     Submit
   </Button>
 </Form>
-     
     </div>
+  
   )
 }

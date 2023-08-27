@@ -16,12 +16,12 @@ export default class PickupDeliveryForm extends Component {
       }
       handleChange1 = (a) => {
         this.setState({ pickup_date: a.target.value });
-      
+        console.log(this.state.pickup_date);
     
     }
     handleChange2 = (a) => {
         this.setState({ delivery_date: a.target.value });
-      
+        console.log(this.state.delivery_date);
     
     }
 
