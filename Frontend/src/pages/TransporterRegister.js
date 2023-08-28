@@ -14,24 +14,24 @@ export default function TransporterRegister() {
   const [businessRegistrationImage, setBusinessRegistrationImage] = useState(null);
 
   const handleBusinessRegistrationImageChange = (e) => {
-    const selectedFile = e.target.files[0];
+    // const selectedFile = e.target.files[0];
 
-    if (selectedFile) {
-      const allowedFormats = ['image/jpeg', 'application/pdf'];
-      const maxSize = 81920; // 80KB in bytes
+    // if (selectedFile) {
+    //   const allowedFormats = ['image/jpeg', 'application/pdf'];
+    //   const maxSize = 81920; // 80KB in bytes
 
-      if (allowedFormats.includes(selectedFile.type) && selectedFile.size <= maxSize) {
-        const reader = new FileReader();
-        reader.onload = (event) => {
-          const imageData = event.target.result;
-          setBusinessRegistrationImage(imageData);
-        };
-        reader.readAsDataURL(selectedFile);
-      } else {
-        alert('Please select a valid file format (jpg/jpeg or pdf) within 80KB.');
-        e.target.value = '';
-      }
-    }
+    //   if (allowedFormats.includes(selectedFile.type) && selectedFile.size <= maxSize) {
+    //     const reader = new FileReader();
+    //     reader.onload = (event) => {
+    //       const imageData = event.target.result;
+    //       setBusinessRegistrationImage(imageData);
+    //     };
+    //     reader.readAsDataURL(selectedFile);
+    //   } else {
+    //     alert('Please select a valid file format (jpg/jpeg or pdf) within 80KB.');
+    //     e.target.value = '';
+    //   }
+    // }
   };
 
   const handleClick = (e) => {
@@ -47,7 +47,7 @@ export default function TransporterRegister() {
       return;
     }
 
-    if (!t_full_name || !t_password || !t_ph_no || !t_address || !isChecked || !businessRegistrationImage) {
+    if (!t_full_name || !t_password || !t_ph_no || !t_address || !isChecked ) {
       alert('Please fill in all required fields and upload a valid business registration image.');
       return;
     }
@@ -63,7 +63,7 @@ export default function TransporterRegister() {
       t_address,
       t_ph_no,
       t_password,
-      businessRegistrationImage: businessRegistrationImage.split(',')[1]
+      // businessRegistrationImage: businessRegistrationImage.split(',')[1]
     };
     
     console.log(transporter);
@@ -157,7 +157,7 @@ export default function TransporterRegister() {
     />
   </FormGroup>
 
-  <FormGroup>
+  {/* <FormGroup>
           <Label for="businessRegistrationImage">Business Registration Image (Max 80KB)</Label>
           <Input
             type="file"
@@ -167,7 +167,7 @@ export default function TransporterRegister() {
             onChange={handleBusinessRegistrationImageChange}
             required // Required attribute for the field
           />
-        </FormGroup>
+        </FormGroup> */}
 
 
   <FormGroup check>

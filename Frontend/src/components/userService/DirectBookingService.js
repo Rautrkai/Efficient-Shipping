@@ -8,9 +8,9 @@ const ITEM_LIST_API = "http://localhost:8282/customer/itemdetails";
 
 const API2 = "http://localhost:8282/admin/transporter";
 
-const API3 = "http://localhost:8080/transporter/auctionitem";
+const API3 = "http://localhost:8282/transporter/auctionitem";
 
-const API4 = "http://localhost:8080/customer/auctionitembidder";
+const API4 = "http://localhost:8282/customer/auctionitembidder";
 
 const API5 = "http://localhost:8282/customer/directhistory";
 
@@ -100,15 +100,16 @@ const API12 = "http://localhost:8282/transporter/selectedBidders";
 
 
     getAuctionItems(){
+       
 
         const item = axios.get(API3);
         console.log(item);
         return item;
     }
-    getAuctionItemsById(a_item_id,c_id)
+    getAuctionItemsById(a_item_id,cust_id)
     {
-        console.log("a_item_id : "+a_item_id+"c_id: "+c_id);
-        return a_item_id,c_id;
+        console.log("a_item_id : "+a_item_id+"cust_id: "+cust_id);
+        return a_item_id,cust_id;
     }
 
    // customer aution items to check bidder

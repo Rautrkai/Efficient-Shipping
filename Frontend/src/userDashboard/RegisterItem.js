@@ -7,11 +7,11 @@ import axios from 'axios';
 export default function RegisterItem() {
   const [item_name, setItemName] = useState('');
   const [item_weight, setItemWeight] = useState('');
-  const [pickup_date, setPickupDate] = useState('');
+  // const [pickup_date, setPickupDate] = useState('');
   const [pickup_pincode, setPickupLocation] = useState('');
   const [pickup_state, setPickupState] = useState('');
   const [pickup_city, setPickupCity] = useState('');
-  const [delivery_date, setDeliveryDate] = useState('');
+  // const [delivery_date, setDeliveryDate] = useState('');
   const [delivery_city, setDeliveryCity] = useState('');
   const [delivery_state, setDeliveryState] = useState('');
   const [delivery_pincode, setDeliveryLocation] = useState('');
@@ -49,9 +49,8 @@ export default function RegisterItem() {
       delivery_pincode,
       delivery_state,
       delivery_city,
-      item_image,
-      delivery_date,
-      pickup_date,
+      item_image
+
     };
 
     const cust_id = JSON.parse(localStorage.getItem('cust_id'));
@@ -109,19 +108,7 @@ export default function RegisterItem() {
           />
         </FormGroup>
   
-  <FormGroup hidden>
-    <Label for="pickup_date" >
-      Pickup Date
-    </Label>
-    <Input
-      id="pickup_date"
-      name="pickup_date"
-      placeholder="Pickup Date"
-      type="date"
-      value={pickup_date}
-      onChange={(e)=>setPickupDate(e.target.value)}
-    />
-  </FormGroup>
+  
  
    <FormGroup>
     <Label for="pickup_state">
@@ -176,20 +163,8 @@ export default function RegisterItem() {
     />
   </FormGroup>
 
-  <FormGroup hidden>
-    <Label for="delivery_date" > 
-      Delivery Date
-    </Label>
-    <Input
-      id="delivery_date"
-      name="delivery_date"
-      placeholder="Delivery Date"
-      type="date"
-      value={delivery_date}
-      onChange={(e)=>setDeliveryDate(e.target.value)}
-    />
 
-  </FormGroup>
+ 
   <FormGroup>
     <Label for="delivery_state">
       Delivery State

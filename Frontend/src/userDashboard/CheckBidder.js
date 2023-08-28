@@ -20,6 +20,7 @@ onSubmit(b_id)
       console.log("b_id is: "+b_id);
       const a_item_id = JSON.parse(localStorage.getItem('a_item_id'));
       console.log("auction item id is: "+a_item_id);
+  
       const requestOption=
       {
         method:'PUT',
@@ -30,7 +31,7 @@ onSubmit(b_id)
         
       }
      
-        fetch(`http://localhost:8080/customer/bidder/${b_id}/${a_item_id}`,requestOption).then(
+        fetch(`http://localhost:8282/customer/bidder/${b_id}/${a_item_id}`,requestOption).then(
           response => response.json()
           ).then((data)=> {
            localStorage.setItem('b_price',data.b_price)
@@ -70,7 +71,7 @@ componentDidMount(){
               {
                                     this.state.bidders.map(
                                         bidder => 
-                                        <tr key = {bidder.b_id}>
+                                        <tr key = {bidder.B_id}>
                                             <td>{bidder.b_id}</td>
                                              <td> { bidder.b_name} </td>   
                                              <td> {bidder.b_price}</td>

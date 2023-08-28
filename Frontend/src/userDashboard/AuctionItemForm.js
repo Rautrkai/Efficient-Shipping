@@ -12,7 +12,6 @@ export default function AuctionItemForm(){
   const[a_item_details,setItemDetails]=useState('')
   const[a_end_datetime,setEndDate]=useState('')
   const[highest_bid_price,setHighBid]=useState('')
-  const[lowest_bid_price,setLowBid]=useState('')
   const a_start_datetime  = new Date();
   // const date = a_end_date.toString();
   console.log(a_end_datetime);
@@ -23,9 +22,8 @@ export default function AuctionItemForm(){
   localStorage.setItem("a_end_datetime",a_end_datetime);
   localStorage.setItem("a_start_datetime",a_end_datetime);
 
-  const i_id = localStorage.getItem('i_id');
-  const c_id = localStorage.getItem('c_id');
-  console.log(i_id,c_id);
+  const item_Id = localStorage.getItem('item_Id');
+  const cust_id = localStorage.getItem('cust_id');
 
 
   const calculateTimeLeft = () => {
@@ -78,59 +76,22 @@ export default function AuctionItemForm(){
     );
   });
 
- 
-
-  //   const start_date = new Date(a_start_date);
-  //   const end_date = new Date(a_end_date);
-
-
-    // console.log("start date: "+start_date.toString());
-    // console.log("end date: "+end_date.toString());
-
-    //days
-  //   const days = Math.abs(end_date - start_date);
-  //     const day= days / (1000 * 60 * 60 * 24);
-  //     console.log("days is "+day);
-
-  //     //hours
-  //     const hours = Math.abs(end_date - start_date);
-  //     const hrs = hours / (1000 * 60 * 60);
-  //     console.log("hours is "+hrs);
-
-  //     //min
-  // const minute = Math.abs(end_date - start_date);
-  // const min = minute / (1000 * 60);
-  // console.log("minute is "+min);
-
-  // //second
-  // const second = Math.abs(end_date - start_date);
-  // const sec = second / 1000;
-  // console.log("sec is :"+sec)
-    // function getDifferenceInDays(a_start_date, a_end_date) {
-      
-    // }
-
-    // let difference = start_date - end_date;
-
-    // console.log("diff: "+difference);
-    // console.log("d :"+date);
-    // console.log("T: "+time);
-  //   console.log(auction);
 
   const handleClick=(e)=>{
     e.preventDefault()
-    const auction = {a_start_datetime,a_end_datetime,a_item_details,a_item_comments,highest_bid_price,lowest_bid_price}
+    const auction = {a_start_datetime,a_end_datetime,a_item_details,a_item_comments,highest_bid_price}
    
     
-  const url = "http://localhost:8080/customer/auctionitem?c_id=" +c_id+ "&i_id=" +i_id;
-  console.log(url);
-  fetch(url,{
-    method:"POST",
-    headers:{"Content-Type":"application/json"},
-      body:JSON.stringify(auction)
-  }
+    const url = `http://localhost:8282/customer/auctionitem?cust_id=${cust_id}&item_Id=${item_Id}`;
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(auction)
+    }
   ).then(()=>{
-    window.location.href = "auctionItemDetails";
+    window.location.href = "/auctionItemDetails";
     console.log("new item added")
   })
     // fetch(`http://localhost:8080/customer/auctionitem?c_id=${c_id}&i_id=${i_id}`,auction,
@@ -201,7 +162,6 @@ export default function AuctionItemForm(){
   <FormGroup>
     <Label
       for="a_item_details"
-      
     >
       Auction Item Details
     </Label>
@@ -231,26 +191,7 @@ export default function AuctionItemForm(){
       onChange={(e)=>setHighBid(e.target.value)}
     />
   </FormGroup>
-  
-  <FormGroup>
-    <Label
-      for="lowest_bid_price"
-      
-    >
-     Lowest Bid Price
-    </Label>
-    <Input
-      id="lowest_bid_price"
-      name="lowest_bid_price"
-      placeholder="Low Bid Price"
-      type="text"
-      value={lowest_bid_price}
-      onChange={(e)=>setLowBid(e.target.value)}
-    />
-  </FormGroup>
   {' '}
- 
- 
   <Button
    onClick={handleClick}
   //  href = "/directBookingList"

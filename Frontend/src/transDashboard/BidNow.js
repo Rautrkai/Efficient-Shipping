@@ -11,21 +11,22 @@ export default class BidNow extends Component {
             price: "",
             t_id: JSON.parse(localStorage.getItem('t_id')),
             a_item_id: JSON.parse(localStorage.getItem('a_item_id')),
-            c_id: JSON.parse(localStorage.getItem('c_id')),
-          
+            cust_id: JSON.parse(localStorage.getItem('cust_id')),
         }
       }
       handleChange1 = (a) => {
         this.setState({ price: a.target.value });
         console.log(this.state.price);
-    
+
     }
     
     submitForm = (e) => {
       
-      console.log(this.state.t_id,this.state.a_item_id,this.state.c_id,this.state.price);
-        const url = "http://localhost:8080/transporter/bidder?t_id=" + this.state.t_id + "&a_item_id=" + this.state.a_item_id + "&c_id=" + this.state.c_id + "&price=" + this.state.price;
+
+      console.log(this.state.t_id,this.state.a_item_id,this.state.cust_id,this.state.price);
+        const url = "http://localhost:8282/transporter/bidder?t_id=" + this.state.t_id + "&a_item_id=" + this.state.a_item_id + "&cust_id=" + this.state.cust_id + "&price=" + this.state.price;
         fetch(url,{method:"POST"}
+        
         ).then(response => response.json())
                 .then(data => 
                     {

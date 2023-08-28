@@ -22,7 +22,6 @@ export default function AuctionItemDetails() {
   function getItemsById(a_end_datetime)
   {
     const cookie = new Cookies();
-
     cookie.set('a_end_datetime',a_end_datetime);
     const  a_date= cookie.get('a_end_datetime');
     console.log("cookie date"+a_date);
@@ -53,8 +52,7 @@ export default function AuctionItemDetails() {
           seconds: Math.floor((difference / 1000) % 60)
         };
       }
-      // console.log(difference);
-      //  window.location.href = "/estimatedPriceList"
+     
      
       return timeLeft;
     }
@@ -93,10 +91,10 @@ export default function AuctionItemDetails() {
 
 
 
-    const cust_id = JSON.parse(localStorage.getItem('c_id'));
-const API_HOST = "http://localhost:8080/customer/auctionitem";
+    const cust_id = JSON.parse(localStorage.getItem('cust_id'));
+const API_HOST = "http://localhost:8282/customer/auctionitem";
 const INVENTORY_API_URL = `${API_HOST}/${cust_id}`;
-console.log(INVENTORY_API_URL);
+
 
 
     const [data, setData] = useState([]);
@@ -137,7 +135,6 @@ console.log(INVENTORY_API_URL);
       <th> Item End Date </th>
      <th>Item Status</th>
       <th> Highest Bid Price </th>
-      <th>Lowest Bid Price</th>
       <th> Actions </th>
     </tr>
   </thead>
@@ -147,11 +144,10 @@ console.log(INVENTORY_API_URL);
                                    data.map((item) => (
                                         <tr key = {item.a_item_id}>
                                            <td>{item.a_item_id}</td>
-                                         <td>{item.item_detail.i_name}</td>
+                                         <td>{item.item_detail.item_name}</td>
                                         <td>{item.a_end_datetime}</td>
                                         <td>{item.a_item_status}</td>
                                         <td>{item.highest_bid_price}</td>
-                                        <td>{item.lowest_bid_price}</td>
                                         <td>
                                         <button style={{marginLeft: "20px"}}  
 

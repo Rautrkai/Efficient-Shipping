@@ -16,12 +16,13 @@ export default class AuctionDetails extends Component{
 }
 
 
-getAuctionItemsById(a_item_id,c_id)
+getAuctionItemsById(a_item_id,cust_id)
 {
     console.log(a_item_id);
-    console.log(c_id);
+    console.log(cust_id);
     localStorage.setItem('a_item_id',a_item_id);
-    localStorage.setItem('c_id',c_id);
+    localStorage.setItem('cust_id',cust_id);
+    alert(cust_id)
     window.location.href = "/bidNow";
    
 }
@@ -30,6 +31,7 @@ getAuctionItemsById(a_item_id,c_id)
 
 
 componentDidMount(){
+   
     DirectBookingService.getAuctionItems().then((res) => {
         this.setState({ items: res.data});
         console.log(this.state.items);
@@ -55,7 +57,6 @@ render() {
       <th> Item Weight</th>
       <th> Pickup City </th>
       <th>Delivery City</th>
-      <th>Lowest Bid Price</th>
       <th>Highest Price</th>
 
       <th> Actions </th>
@@ -67,19 +68,18 @@ render() {
                                         auction => 
                                         <tr key = {auction.a_item_id}>
                                            <td>{auction.a_item_id}</td>
-                                        <td>{auction.customer.c_first_name}</td>
-                                        <td>{auction.customer.c_last_name}</td>
-                                        <td>{auction.item_detail.i_name}</td>
-                                        <td>{auction.item_detail.i_weight}</td>
+                                        <td>{auction.customer.cust_fName}</td>
+                                        <td>{auction.customer.cust_lName}</td>
+                                        <td>{auction.item_detail.item_name}</td>
+                                        <td>{auction.item_detail.item_weight}</td>
                                         <td>{auction.item_detail.pickup_city}</td>
                                         <td>{auction.item_detail.delivery_city}</td>
-                                        <td>{auction.lowest_bid_price}</td>
                                         <td>{auction.highest_bid_price}</td>
                                              <td>
                                              
                                                  {/* <button style={{marginLeft: "10px"}} onClick={ () => this.viewEmployee(employee.i_id)} className="btn btn-info">View </button> */}
                                                  <button style={{marginLeft: "20px"}}  
-                                                  onClick={ () => this.getAuctionItemsById(auction.a_item_id,auction.customer.c_id)} 
+                                                  onClick={ () => this.getAuctionItemsById(auction.a_item_id,auction.customer.cust_id)} 
                                                  className="btn btn-warning">  Bid Now</button>
 
                                               
