@@ -1,0 +1,14 @@
+package com.app.EfficientSS.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.app.EfficientSS.dao.BidderDao;
+
+@Service
+public class BidderServiceImpl implements BidderService {
+
+	
+	@Autowired
+	private BidderDao  bdao;
+}

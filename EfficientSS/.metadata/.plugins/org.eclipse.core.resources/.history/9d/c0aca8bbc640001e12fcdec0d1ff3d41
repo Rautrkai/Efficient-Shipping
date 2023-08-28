@@ -1,0 +1,5 @@
+package com.app.EfficientSS.dao;
+
+public interface TransporterDao extends JpaRepository{
+
+}

@@ -1,6 +1,6 @@
 package com.app.EfficientSS.beans;
 
-import java.util.List;
+import java.util.List; 
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -30,32 +30,24 @@ public class TransporterDriver {
     private String name;
     private String licenseNumber;
     private int phoneNumber;
-    
-    
+       
 	@JsonIgnore
     @ManyToOne
 	private Transporter transporter;
 
-    
     // Other fields, getters, setters, constructors...
 	public TransporterDriver() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-
 
 	public Transporter getTransporter() {
 		return transporter;
 	}
 
-
-
 	public void setTransporter(Transporter transporter) {
 		this.transporter = transporter;
 	}
-
-
 
 	public TransporterDriver(Long id, String name, String licenseNumber, int phoneNumber, Transporter transporter) {
 		super();
@@ -65,10 +57,6 @@ public class TransporterDriver {
 		this.phoneNumber = phoneNumber;
 		this.transporter = transporter;
 	}
-
-
-
-
 
 	public Long getId() {
 		return id;

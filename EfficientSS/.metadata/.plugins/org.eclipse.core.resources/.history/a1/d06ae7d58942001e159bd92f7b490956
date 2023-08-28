@@ -1,0 +1,7 @@
+package com.app.EfficientSS.dao;
+
+
+@Repository
+public interface BidderRepo extends JpaRepository<Bidder,Integer> {
+
+}

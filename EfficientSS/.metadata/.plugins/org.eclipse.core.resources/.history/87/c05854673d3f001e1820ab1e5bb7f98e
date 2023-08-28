@@ -1,0 +1,18 @@
+package com.app.EfficientSS.service;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import com.app.EfficientSS.beans.Feedback;
+
+@Service
+public class FeedbackServiceImpl implements FeedbackService  {
+
+	private FeedbackDao feedbackDao;
+	@Override
+	public ResponseEntity<String> registerCustFeedback(Feedback feedback, int cust_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

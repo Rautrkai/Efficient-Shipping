@@ -47,7 +47,10 @@ public class Customer {
 	@OneToMany(mappedBy="customer")
 	private List<Feedback> feedback_complaint;
 	
-
+	@JsonIgnore
+	@OneToMany(mappedBy="customer")
+	private List<Auction_Item> auction_item;
+	
 	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL,mappedBy="customer")
 	private List<Bidder> bidder;

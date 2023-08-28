@@ -1,0 +1,11 @@
+package com.app.EfficientSS.service;
+
+import org.springframework.http.ResponseEntity;
+
+import com.app.EfficientSS.beans.Bidder;
+
+public interface BidderService {
+
+	ResponseEntity<Bidder> setBidderNoAuction(int t_id, int i_id, int c_id, String kmrange);
+
+}

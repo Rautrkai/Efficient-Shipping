@@ -1,0 +1,7 @@
+package com.app.EfficientSS.service;
+
+public interface BidderService {
+
+	void setBidderNoAuction(int t_id, int item_Id, int cust_id, double price);
+
+}

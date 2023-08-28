@@ -1,0 +1,10 @@
+package com.app.EfficientSS.beans;
+
+public class Price {
+
+	private double price;
+	
+	private double distance;
+	
+	private double price_per_km;
+}

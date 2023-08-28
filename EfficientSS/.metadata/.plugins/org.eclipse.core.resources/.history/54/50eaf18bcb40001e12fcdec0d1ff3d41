@@ -1,0 +1,12 @@
+package com.app.EfficientSS.dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+public interface TransporterDao extends JpaRepository{
+
+	
+	@Query(value="SELECT * FROM Transporter WHERE cust_email_id = ?",nativeQuery = true)
+	void findByEmailId(String email);
+
+}

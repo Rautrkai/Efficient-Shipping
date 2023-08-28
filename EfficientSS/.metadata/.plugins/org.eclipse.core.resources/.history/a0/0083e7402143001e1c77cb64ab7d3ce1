@@ -1,0 +1,110 @@
+package com.app.EfficientSS.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import com.app.EfficientSS.beans.Customer;
+import com.app.EfficientSS.beans.Item_Details;
+import com.app.EfficientSS.beans.Payment;
+import com.app.EfficientSS.dao.CustomerDao;
+import com.app.EfficientSS.dao.ItemDao;
+import com.app.EfficientSS.dao.PaymentDao;
+import com.app.EfficientSS.dao.TransporterDao;
+import com.app.EfficientSS.beans.*;
+
+
+@Service
+public class PaymentServiceImpl implements PaymentService{
+
+
+		@Autowired
+		private CustomerDao cdao;
+		
+		@Autowired
+		private ItemDao idao;
+		
+		@Autowired
+		private TransporterDao tdao;
+		
+		@Autowired
+		private PaymentDao pdao;
+		
+		
+		
+
+		public List<Payment> transporterCheckPayment(long t_id) {
+			
+			try {
+				List<Payment> payments=pdao.getbyTransporterId(t_id);
+				if(payments!=null)
+					return payments;
+					else 
+						return null;
+			} catch (Exception e) {
+				return null;				
+			}
+			
+		}
+
+		public List<Payment> CheckPayment() {
+			
+			try{
+				List<Payment> payments=pdao.findAll();
+			
+				if(payments!=null)
+				return payments;
+				else 
+					return null;
+			
+			} catch (Exception e) {
+		
+				return null;
+		
+			}
+		}
+
+		@Override
+		public Payment customerPayment(Payment payment, int c_id, int i_id) {
+			try {
+				Customer cust=cdao.getById(cust_id);
+				Item_Details idetail=idao.findByItemId(item_Id);
+				Transporter trans = new Transporter();
+				List<Bidder> bid=idetail.getBidder();
+				
+				for (Bidder b: bid) {
+					if(b.getB_selection_status().equalsIgnoreCase("Selected")) {
+						trans=b.getTransporter();
+					}
+				}
+				
+				Long profit=((payment.getCust_payment()*30)/100);
+						
+				Long Bank_bal=payment.getBank_balance()+profit;
+				
+				payment.setBank_balance(Bank_bal);
+				payment.setT_payment(payment.getCust_payment()-profit);
+				
+				payment.setCust_name(cust.getCust_fName()+" "+cust.getCust_mName()+" "+cust.getCust_lName());
+				payment.setPayment_status("Done");
+				payment.setT_name(trans.getT_full_name());
+				payment.setCustomer(cust);
+				payment.setItem_detail(idetail);
+				payment.setTransporter(trans);
+				Payment pay=pdao.save(payment);
+				
+				return pay;
+			
+			} catch (Exception e) {
+				
+				return null;
+			}
+		}
+
+		
+	}
+
+

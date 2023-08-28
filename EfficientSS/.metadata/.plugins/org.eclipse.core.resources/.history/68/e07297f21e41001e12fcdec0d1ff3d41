@@ -1,0 +1,14 @@
+package com.app.EfficientSS.dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import com.app.EfficientSS.beans.EstimatePrice;
+
+public interface EstimatePriceDao extends JpaRepository<EstimatePrice,Integer> {
+
+	
+	@Query(value="SELECT latitude,latitude FROM City WHERE  name= ?",nativeQuery = true)
+	void findvalues(String pickup);
+
+}

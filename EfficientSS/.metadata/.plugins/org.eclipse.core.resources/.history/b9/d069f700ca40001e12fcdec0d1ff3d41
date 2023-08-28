@@ -1,0 +1,9 @@
+package com.app.EfficientSS.dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface TransporterDao extends JpaRepository{
+
+	void findByEmailId(String email);
+
+}

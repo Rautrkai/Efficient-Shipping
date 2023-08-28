@@ -33,30 +33,72 @@ public class Bidder {
 	@Column(name="b_selection_status")
 	private String B_selection_status;
 	
-	
+	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinTable(name="Customer_Bidder",
                 joinColumns={@JoinColumn(name="b_id")}, 
                 inverseJoinColumns={@JoinColumn(name="c_id")})
     private List<Customer> customer;
 	
-	
+	@JsonIgnore
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="t_id",referencedColumnName="t_id")
 	private Transporter transporter;
-	
-	
+
+	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinTable(name="Item_Detail_Bidder",
                 joinColumns={@JoinColumn(name="b_id")}, 
                 inverseJoinColumns={@JoinColumn(name="i_id")})
     private List<Item_Details> item_detail;
     
-	public Bidder() {
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinTable(name="Auction_Item_Bidder", 
+                joinColumns={@JoinColumn(name="b_id")}, 
+                inverseJoinColumns={@JoinColumn(name="a_id")})
+    private List<Auction_Item> auction_item;
+	
+    public Bidder() {
 		super();
 	}
 
 	
+
+
+
+	public List<Auction_Item> getAuction_item() {
+		return auction_item;
+	}
+
+
+
+
+
+	public void setAuction_item(List<Auction_Item> auction_item) {
+		this.auction_item = auction_item;
+	}
+
+
+
+
+
+	public Bidder(int b_id, double b_price, String b_name, String b_ph_no, String b_selection_status,
+			List<Customer> customer, Transporter transporter, List<Item_Details> item_detail,
+			List<Auction_Item> auction_item) {
+		super();
+		B_id = b_id;
+		B_price = b_price;
+		B_name = b_name;
+		B_ph_no = b_ph_no;
+		B_selection_status = b_selection_status;
+		this.customer = customer;
+		this.transporter = transporter;
+		this.item_detail = item_detail;
+		this.auction_item = auction_item;
+	}
+
+
 
 
 

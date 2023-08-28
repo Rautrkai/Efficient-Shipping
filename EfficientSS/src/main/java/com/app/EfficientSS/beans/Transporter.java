@@ -1,6 +1,6 @@
 package com.app.EfficientSS.beans;
 
-import java.util.List; 
+import java.util.List;  
 
 
 import javax.persistence.Column;
@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -36,7 +37,9 @@ public class Transporter {
 	private String t_ph_no;
 	@Column(name="t_address",nullable=false)
 	private String t_address;
-	
+//	 @Lob
+//	 private byte[] businessRegistrationImage;
+	 
 	@Column(name="t_verification",columnDefinition="varchar(50) default 'Pending'",nullable=false)
 	private String t_verification;
 	@Column(name="t_blacklist",columnDefinition="varchar(50) default 'Clear'",nullable=false)
@@ -57,6 +60,40 @@ public class Transporter {
 	@JsonIgnore
 	@OneToMany(mappedBy="transporter")
 	private List<Payment> payment;
+
+	@JsonIgnore
+	@OneToMany(mappedBy="transporter")
+	private List<Bidder> bidder;
+
+	
+	public Transporter() {
+		super();
+	}
+
+
+
+	public Transporter(long t_id, String t_full_name, String t_email_id, String t_password, String t_ph_no,
+			String t_address, String t_verification, String t_blacklist,
+			List<TransporterDriver> driver, List<Feedback> feedback_complaint, EstimatePrice esprice,
+			List<Payment> payment, List<Bidder> bidder) {
+		super();
+		this.t_id = t_id;
+		this.t_full_name = t_full_name;
+		this.t_email_id = t_email_id;
+		this.t_password = t_password;
+		this.t_ph_no = t_ph_no;
+		this.t_address = t_address;
+//		this.businessRegistrationImage = businessRegistrationImage;
+		this.t_verification = t_verification;
+		this.t_blacklist = t_blacklist;
+		this.driver = driver;
+		this.feedback_complaint = feedback_complaint;
+		this.esprice = esprice;
+		this.payment = payment;
+		this.bidder = bidder;
+	}
+
+
 	
 	public EstimatePrice getEsprice() {
 		return getEsprice();
@@ -66,11 +103,6 @@ public class Transporter {
 		this.esprice = esprice;
 	}
 
-	@JsonIgnore
-	@OneToMany(mappedBy="transporter")
-	private List<Bidder> bidder;
-
-
 
 	public List<Bidder> getBidder() {
 		return bidder;
@@ -79,173 +111,18 @@ public class Transporter {
 	public void setBidder(List<Bidder> bidder) {
 		this.bidder = bidder;
 	}
-	
-	public Transporter(long t_id, String t_full_name, String t_email_id, String t_password, String t_ph_no,
-			String t_address, String t_verification, String t_blacklist, List<TransporterDriver> driver,
-			List<Feedback> feedback_complaint, EstimatePrice esprice, List<Bidder> bidder) {
-		super();
-		this.t_id = t_id;
-		this.t_full_name = t_full_name;
-		this.t_email_id = t_email_id;
-		this.t_password = t_password;
-		this.t_ph_no = t_ph_no;
-		this.t_address = t_address;
-		this.t_verification = t_verification;
-		this.t_blacklist = t_blacklist;
-		this.driver = driver;
-		this.feedback_complaint = feedback_complaint;
-		this.esprice = esprice;
-		this.bidder = bidder;
-	}
 
-	public Transporter() {
-		super();
-	}
+
 
 	public long getT_id() {
 		return t_id;
 	}
 
+
+
 	public void setT_id(long t_id) {
 		this.t_id = t_id;
 	}
-
-	public String getT_email_id() {
-		return t_email_id;
-	}
-
-
-	public void setT_email_id(String t_email_id) {
-		this.t_email_id = t_email_id;
-	}
-
-
-
-
-
-	public String getT_password() {
-		return t_password;
-	}
-
-
-
-
-
-	public void setT_password(String t_password) {
-		this.t_password = t_password;
-	}
-
-
-
-
-
-	public String getT_ph_no() {
-		return t_ph_no;
-	}
-
-
-
-
-
-	public void setT_ph_no(String t_ph_no) {
-		this.t_ph_no = t_ph_no;
-	}
-
-
-
-
-
-	public String getT_address() {
-		return t_address;
-	}
-
-
-
-
-
-	public void setT_address(String t_address) {
-		this.t_address = t_address;
-	}
-
-
-
-
-
-	
-
-
-
-	
-
-
-
-
-	public String getT_verification() {
-		return t_verification;
-	}
-
-
-
-
-
-	public void setT_verification(String t_verification) {
-		this.t_verification = t_verification;
-	}
-
-
-
-
-
-	public String getT_blacklist() {
-		return t_blacklist;
-	}
-
-
-
-
-
-	public void setT_blacklist(String t_blacklist) {
-		this.t_blacklist = t_blacklist;
-	}
-
-
-
-
-
-	public List<TransporterDriver> getDriver() {
-		return driver;
-	}
-
-
-
-
-
-	public void setDriver(List<TransporterDriver> driver) {
-		this.driver = driver;
-	}
-
-
-
-
-
-	public List<Feedback> getFeedback_complaint() {
-		return feedback_complaint;
-	}
-
-
-
-
-
-	public void setFeedback_complaint(List<Feedback> feedback_complaint) {
-		this.feedback_complaint = feedback_complaint;
-	}
-
-
-
-
-
-
-
 
 
 
@@ -255,27 +132,119 @@ public class Transporter {
 
 
 
-
-
 	public void setT_full_name(String t_full_name) {
 		this.t_full_name = t_full_name;
 	}
 
 
 
+	public String getT_email_id() {
+		return t_email_id;
+	}
 
 
 
+	public void setT_email_id(String t_email_id) {
+		this.t_email_id = t_email_id;
+	}
 
 
 
+	public String getT_password() {
+		return t_password;
+	}
+
+
+
+	public void setT_password(String t_password) {
+		this.t_password = t_password;
+	}
+
+
+
+	public String getT_ph_no() {
+		return t_ph_no;
+	}
+
+
+
+	public void setT_ph_no(String t_ph_no) {
+		this.t_ph_no = t_ph_no;
+	}
+
+
+
+	public String getT_address() {
+		return t_address;
+	}
+
+
+
+	public void setT_address(String t_address) {
+		this.t_address = t_address;
+	}
 
 
 
 	
 
+	public String getT_verification() {
+		return t_verification;
+	}
 
 
 
+	public void setT_verification(String t_verification) {
+		this.t_verification = t_verification;
+	}
 
+
+
+	public String getT_blacklist() {
+		return t_blacklist;
+	}
+
+
+
+	public void setT_blacklist(String t_blacklist) {
+		this.t_blacklist = t_blacklist;
+	}
+
+
+
+	public List<TransporterDriver> getDriver() {
+		return driver;
+	}
+
+
+
+	public void setDriver(List<TransporterDriver> driver) {
+		this.driver = driver;
+	}
+
+
+
+	public List<Feedback> getFeedback_complaint() {
+		return feedback_complaint;
+	}
+
+
+
+	public void setFeedback_complaint(List<Feedback> feedback_complaint) {
+		this.feedback_complaint = feedback_complaint;
+	}
+
+
+
+	public List<Payment> getPayment() {
+		return payment;
+	}
+
+
+
+	public void setPayment(List<Payment> payment) {
+		this.payment = payment;
+	}
+	
+	
 	}

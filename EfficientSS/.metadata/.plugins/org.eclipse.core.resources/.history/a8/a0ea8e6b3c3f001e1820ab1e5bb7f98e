@@ -1,0 +1,10 @@
+package com.app.EfficientSS.controller;
+
+
+
+
+
+@RestController
+public class FeedbackController {
+
+}

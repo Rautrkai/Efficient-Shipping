@@ -1,0 +1,25 @@
+package com.app.EfficientSS.beans;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+public class Bidder {
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="b_id")
+	private int B_id;
+	@Column(name="b_price",nullable=false)
+	private int B_price;
+	@Column(name="b_name")
+	private String B_name;
+	@Column(name="b_ph_no")
+	private String B_ph_no;
+	@Column(name="b_selection_status")
+	private String B_selection_status;
+	
+	
+
+}

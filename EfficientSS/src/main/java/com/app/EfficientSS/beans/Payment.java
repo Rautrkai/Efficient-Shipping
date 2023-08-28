@@ -33,14 +33,10 @@ public class Payment {
 	@Column(name="payment_status")
 	private String payment_status;
 	
+	@Column(name="paymentId")
+	private String paymentId;
 	
-	@Override
-	public String toString() {
-		return "Payment [transaction_id=" + transaction_id + ", account_number=" + account_number + ", bank_balance="
-				+ bank_balance + ", cust_payment=" + cust_payment + ", t_payment=" + t_payment + ", cust_name="
-				+ cust_name + ", t_name=" + t_name + ", payment_status=" + payment_status + ", customer=" + customer
-				+ ", item_detail=" + item_detail + ", transporter=" + transporter + "]";
-	}
+	
 
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="cust_id",referencedColumnName="cust_id")
@@ -62,22 +58,29 @@ public class Payment {
 		
 	}
 
-	public Payment(int transaction_id, String account_number, long bank_balance, long c_payment, long t_payment,
-			String c_name, String t_name, String payment_status, Customer customer, Item_Details item_detail,
-			Transporter transporter) {
+	
+
+
+
+	public Payment(int transaction_id, String account_number, long bank_balance, long cust_payment, long t_payment,
+			String cust_name, String t_name, String payment_status, String paymentId, Customer customer,
+			Item_Details item_detail, Transporter transporter) {
 		super();
 		this.transaction_id = transaction_id;
 		this.account_number = account_number;
 		this.bank_balance = bank_balance;
-		this.cust_payment = c_payment;
+		this.cust_payment = cust_payment;
 		this.t_payment = t_payment;
-		this.cust_name = c_name;
+		this.cust_name = cust_name;
 		this.t_name = t_name;
 		this.payment_status = payment_status;
+		this.paymentId = paymentId;
 		this.customer = customer;
 		this.item_detail = item_detail;
 		this.transporter = transporter;
 	}
+
+
 
 
 
@@ -173,8 +176,13 @@ public class Payment {
 		this.payment_status = payment_status;
 	}
 
-	
-	
+	public String getPaymentId() {
+		return paymentId;
+	}
+
+	public void setPaymentId(String paymentId) {
+		this.paymentId = paymentId;
+	}
 	
 	
 }

@@ -1,0 +1,5 @@
+package com.app.EfficientSS.service;
+
+public class BidderServiceImpl implements BidderService {
+
+}

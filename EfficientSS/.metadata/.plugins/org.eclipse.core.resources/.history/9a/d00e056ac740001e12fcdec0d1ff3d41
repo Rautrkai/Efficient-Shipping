@@ -1,0 +1,5 @@
+package com.app.EfficientSS.exception;
+
+public class NotFoundException {
+
+}

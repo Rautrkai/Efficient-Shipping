@@ -27,8 +27,7 @@ public class AdminController {
 	@PostMapping("home/adminlogin")
 	public ResponseEntity<Admin> validateAdmin(@RequestBody Admin admin)
 	{
-		System.out.println("request ali");
-		System.out.println(admin);
+		
 		Admin admin1=adminService.validateAdmin(admin);
 		System.out.println(admin1);
 		if(admin1.getAdmin_email_id().equals(admin.getAdmin_email_id()) && admin.getAdmin_email_id().equals(admin1.getAdmin_email_id()))
@@ -51,7 +50,6 @@ public class AdminController {
 	@PutMapping("admin/customer/{cust_id}")
 	public  ResponseEntity<String> changeStatus(@PathVariable int cust_id)
 	{
-		System.out.println("ali");
 		adminService.blockCustomer(cust_id);
 		return new ResponseEntity<>(HttpStatus.OK);	}
 }

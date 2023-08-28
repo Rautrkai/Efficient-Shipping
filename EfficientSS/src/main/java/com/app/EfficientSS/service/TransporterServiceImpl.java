@@ -58,7 +58,7 @@ public class TransporterServiceImpl implements TransporterService {
 			
 			String email=trans.getT_email_id();
 			Transporter t=Transporterdao.findByEmailId(email);
-			if(t.getT_blacklist().equalsIgnoreCase("clear"))
+			if(t.getT_blacklist().equalsIgnoreCase("clear") && t.getT_verification().equalsIgnoreCase("done"))
 			return t;
 			else 
 				return null;

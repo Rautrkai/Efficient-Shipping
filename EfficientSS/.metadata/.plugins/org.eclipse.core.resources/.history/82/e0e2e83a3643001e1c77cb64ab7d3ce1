@@ -1,0 +1,15 @@
+package com.app.EfficientSS.service;
+
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+
+import com.app.EfficientSS.beans.Bidder;
+
+public interface BidderService {
+
+	ResponseEntity<Bidder> setBidderNoAuction(long t_id, int item_id, int cust_id, double price);
+
+	List<Bidder> HistoryDirectBidder();
+
+}

@@ -1,0 +1,7 @@
+package com.app.EfficientSS.service;
+
+
+@Service
+public class PaymentServiceImpl implements PaymentService{
+
+}

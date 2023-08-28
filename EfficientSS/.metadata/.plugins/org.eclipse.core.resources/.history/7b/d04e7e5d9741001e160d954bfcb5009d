@@ -1,0 +1,16 @@
+package com.app.EfficientSS.beans;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
+public class EstimatePrice {
+	@Id
+    private int estimateId;
+	
+	@Column(name="price_per_km")
+	private double price_per_km;
+}

@@ -1,0 +1,48 @@
+package com.app.EfficientSS.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.app.EfficientSS.beans.Payment;
+import com.app.EfficientSS.service.PaymentService;
+
+
+
+@CrossOrigin(origins = "http://localhost:3000")
+@Controller
+public class PaymentController {
+	
+	@Autowired
+	private PaymentService pservice;
+
+	
+	@PostMapping("/customer/payment")
+	public ResponseEntity<Payment> custPayment(@RequestBody Payment payment,@RequestParam int c_id,@RequestParam int i_id){
+		
+
+pservice.customerPayment(payment,c_id,i_id);
+return null;
+	}
+	
+	@GetMapping("/transporter/payment/{t_id}")
+	public ResponseEntity<List<Payment>> transCheckPayment(@PathVariable ("t_id") int t_id){
+		
+		return pservice.transporterCheckPayment(t_id);
+	}
+
+	@GetMapping("/admin/payment")
+	public ResponseEntity<List<Payment>> CheckPayment(){
+		
+		return pservice.CheckPayment();
+	}
+
+}

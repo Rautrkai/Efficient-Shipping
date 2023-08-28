@@ -28,6 +28,9 @@ public class EstimatePriceServiceImpl implements EstimatePriceService {
 	@Autowired
 	private TransporterDao tdao;
 
+	
+	
+	//haversine formula to calculate distance and on that price 
 	@Override
 	public Price findprice(long t_id,int item_id) {
 		Item_Details item=itemdao.findByItemId(item_id);

@@ -1,5 +1,6 @@
 package com.app.EfficientSS.controller;
 
+import java.util.Base64;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,8 @@ public class TransporterController {
     
     @PostMapping("home/transporter")
     public ResponseEntity<String> createTransporter(@RequestBody Transporter transporter) {
-    	System.out.println(transporter);
+//    	byte[] decodedImage = Base64.getDecoder().decode(transporter.getBusinessRegistrationImage());
+//    	System.out.println(decodedImage);
         transporterService.createTransporter(transporter);
         return new ResponseEntity<>("created", HttpStatus.CREATED);
     }

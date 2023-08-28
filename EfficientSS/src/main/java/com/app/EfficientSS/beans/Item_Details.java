@@ -15,6 +15,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -47,12 +48,12 @@ public class Item_Details {
 	private String delivery_city;
 	@Column(name="delivery_status")
 	private String delivery_status;
-	@Column(name="item_image")
-	private String item_image;
+	
 	@Column(name="delivery_date")
 	private Date delivery_date;
 	@Column(name="pickup_date")
     private Date pickup_date;
+	
 	@Column(name="operation_status")
     private String operation_status;
 
@@ -62,7 +63,7 @@ public class Item_Details {
 	}
 
 
-    @JsonIgnore
+    
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="cust_id",referencedColumnName="cust_id")
 	private Customer customer;
@@ -71,10 +72,14 @@ public class Item_Details {
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL,mappedBy="item_detail")
     private List<Bidder> bidder;
 	
-
+	@JsonIgnore
+	@OneToOne(mappedBy="item_detail")
+	private Auction_Item auction_item;
+	
 	@OneToMany(mappedBy="item_detail")
 	private List<Payment> payment;
 
+	@JsonIgnore
 	public List<Bidder> getBidder() {
 		return bidder;
 	}
@@ -102,7 +107,6 @@ public class Item_Details {
 		this.delivery_state = delivery_state;
 		this.delivery_city = delivery_city;
 		this.delivery_status = delivery_status;
-		this.item_image = item_image;
 		this.delivery_date = delivery_date;
 		this.pickup_date = pickup_date;
 		this.operation_status = operation_status;
@@ -208,16 +212,6 @@ public class Item_Details {
 	}
 
 
-	public String getItem_image() {
-		return item_image;
-	}
-
-
-	public void setItem_image(String item_image) {
-		this.item_image = item_image;
-	}
-
-
 	public Date getDelivery_date() {
 		return delivery_date;
 	}
@@ -255,6 +249,17 @@ public class Item_Details {
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+	}
+
+	@Override
+	public String toString() {
+		return "Item_Details [item_Id=" + item_Id + ", skuId=" + skuId + ", item_name=" + item_name + ", item_weight="
+				+ item_weight + ", description=" + description + ", pickup_pincode=" + pickup_pincode
+				+ ", pickup_state=" + pickup_state + ", pickup_city=" + pickup_city + ", delivery_pincode="
+				+ delivery_pincode + ", delivery_state=" + delivery_state + ", delivery_city=" + delivery_city
+				+ ", delivery_status=" + delivery_status + ", delivery_date=" + delivery_date + ", pickup_date="
+				+ pickup_date + ", operation_status=" + operation_status + ", customer=" + customer + ", bidder="
+				+ bidder + ", auction_item=" + auction_item + ", payment=" + payment + "]";
 	}
 
 

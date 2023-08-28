@@ -1,0 +1,7 @@
+package com.app.EfficientSS.dao;
+
+@Repository
+public interface PaymentDao extends JpaRepository<Payment, Integer>{
+
+
+}

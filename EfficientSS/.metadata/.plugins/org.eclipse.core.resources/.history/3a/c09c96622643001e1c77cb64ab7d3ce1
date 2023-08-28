@@ -1,0 +1,60 @@
+package com.app.EfficientSS.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.app.EfficientSS.beans.Payment;
+import com.app.EfficientSS.service.PaymentService;
+
+
+
+@CrossOrigin(origins = "http://localhost:3000")
+@Controller
+public class PaymentController {
+	
+	@Autowired
+	private PaymentService pservice;
+
+	
+	@PostMapping("/customer/payment")
+	public ResponseEntity<Payment> custPayment(@RequestBody Payment payment,@RequestParam int cust_id,@RequestParam int item_Id){
+		
+		Payment pay=pservice.customerPayment(payment,cust_id,item_Id);
+		if(pay!=null)
+			return ResponseEntity.ok(pay);
+		else 
+			return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+	}
+	
+	
+	
+	@GetMapping("/transporter/payment/{t_id}")
+	public ResponseEntity<List<Payment>> transCheckPayment(@PathVariable ("t_id") long t_id){
+		
+		pservice.transporterCheckPayment(t_id);
+		return null;
+
+	}
+
+	@GetMapping("/admin/payment")
+	public ResponseEntity<List<Payment>> CheckPayment(){
+		System.out.println("reach");
+		List<Payment> payments=pservice.CheckPayment();
+		if(payments!=null)
+			return ResponseEntity.ok(pay);
+		else 
+			return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+
+	}
+
+}

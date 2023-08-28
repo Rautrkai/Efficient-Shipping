@@ -26,8 +26,9 @@ public class PaymentController {
 	private PaymentService pservice;
 
 	
-	@PostMapping("/customer/payment")
-	public ResponseEntity<Payment> custPayment(@RequestBody Payment payment,@RequestParam int cust_id,@RequestParam int item_Id){
+	@PostMapping("/customer/payment/{cust_id}/{item_Id}")
+	public ResponseEntity custPayment(@RequestBody Payment payment,@PathVariable int cust_id,@PathVariable int item_Id){
+		
 		
 		Payment pay=pservice.customerPayment(payment,cust_id,item_Id);
 		if(pay!=null)
@@ -61,6 +62,7 @@ public class PaymentController {
 			return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
 
 	}
+	
 }
 
 

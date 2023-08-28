@@ -1,0 +1,9 @@
+package com.app.EfficientSS.service;
+
+import com.app.EfficientSS.beans.Bidder;
+
+public interface BidderService {
+
+	Bidder setBidderNoAuction(long t_id, int item_id, int cust_id, double price);
+
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.app.EfficientSS.beans.BIdder&apos; to &apos;Bidder&apos;&#x0D;&#x0A;- Original project: &apos;EfficientSS&apos;&#x0D;&#x0A;- Original element: &apos;com.app.EfficientSS.beans.BIdder&apos;&#x0D;&#x0A;- Renamed element: &apos;com.app.EfficientSS.beans.Bidder&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;BIdder&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.app.EfficientSS.beans{BIdder.java[BIdder" matchStrategy="1" name="Bidder" qualified="false" references="true" similarDeclarations="false" stamp="1692456611073" textual="false" version="1.0"/>
+</session>
