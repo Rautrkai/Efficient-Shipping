@@ -76,6 +76,7 @@ public class Item_Details {
 	@OneToOne(mappedBy="item_detail")
 	private Auction_Item auction_item;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="item_detail")
 	private List<Payment> payment;
 

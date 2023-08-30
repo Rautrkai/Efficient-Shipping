@@ -87,7 +87,7 @@ public class AuctionItemSerivceImpl implements AuctionItemSerivce{
 				
 				adao.save(newAuctionItem);
 			}
-			
+			System.out.println("jhnjhb");
 			if(oldBidder.isPresent())
 			{
 				Bidder newBidder=oldBidder.get();

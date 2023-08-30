@@ -3,6 +3,7 @@ package com.app.EfficientSS.beans;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Payment {
@@ -36,22 +38,21 @@ public class Payment {
 	@Column(name="paymentId")
 	private String paymentId;
 	
-	
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "cust_id", referencedColumnName = "cust_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer"}) // Exclude Hibernate proxy
+    private Customer customer;
+    
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "item_Id", referencedColumnName = "item_Id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer"}) // Exclude Hibernate proxy
+    private Item_Details item_detail;
+    
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "t_id", referencedColumnName = "t_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer"}) // Exclude Hibernate proxy
+    private Transporter transporter;
 
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="cust_id",referencedColumnName="cust_id")
-	private Customer customer;
-	
-	
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="item_Id",referencedColumnName="item_Id")
-	private Item_Details item_detail;
-	
-
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="t_id",referencedColumnName="t_id")
-	private Transporter transporter;
-	
 	
 
 	public Payment() {

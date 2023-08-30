@@ -19,6 +19,7 @@ public interface AuctionItemDao extends JpaRepository<Auction_Item,Integer>{
 	@Query(value="select * from auction_item WHERE cust_id = ? and a_item_status in ('Running','Got Bid','No Bid')",nativeQuery = true)
 	List<Auction_Item> findByCustomerId(int c_id);
 
+	
 	@Query(value="select * from auction_item WHERE a_item_status in ('Running','Got Bid') and timer in ('Counting')",nativeQuery = true)
 	List<Auction_Item> findAllRunning();
 

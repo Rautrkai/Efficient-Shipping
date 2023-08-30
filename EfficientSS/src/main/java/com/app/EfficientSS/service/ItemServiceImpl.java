@@ -15,8 +15,9 @@ import com.app.EfficientSS.dao.AdminDao;
 import com.app.EfficientSS.dao.AuctionItemDao;
 import com.app.EfficientSS.dao.CustomerDao;
 import java.time.LocalDate;
-
-
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -64,46 +65,79 @@ public class ItemServiceImpl implements ItemService{
 		}
 
 
+//		@Override
+//		public void startMethod() {
+//			LocalDate localDate = LocalDate.now();
+//
+//			List<Auction_Item> alist=aDao.getAllAuctionItem();	
+//			
+//			if(alist.isEmpty()) {
+//				//Do Nothing
+//			}else {
+//				
+//				for(Auction_Item a: alist) 
+//				{
+//					try {
+//					SimpleDateFormat formatter1=new SimpleDateFormat("yyyy-MM-dd");
+//					
+//						Date d1=formatter1.parse(a.getA_end_datetime());
+//						int x=d1.getDate();
+//						int y=localDate.getDayOfMonth();
+//						System.out.println(x);
+//						System.out.println(y);
+//						int z=y-x;	//0 or positive			times up
+//									//negative 				running
+//						System.out.println(z);
+//						if(z>=0) {
+//							a.setTimer("Expired");
+//							if(a.getA_item_status().equalsIgnoreCase("Running"))
+//							{
+//								a.setA_item_status("No bid");
+//								
+//							}
+//							aDao.save(a);
+//						}
+//						
+//					} catch (ParseException e) {
+//						
+//						e.printStackTrace();
+//					}
+//					
+//				}
+//			
+//		}
+//		}
+		
 		@Override
 		public void startMethod() {
-			LocalDate localDate = LocalDate.now();
+		    LocalDate localDate = LocalDate.now();
+		    List<Auction_Item> alist = aDao.getAllAuctionItem();
 
-			List<Auction_Item> alist=aDao.getAllAuctionItem();	
-			
-			if(alist.isEmpty()) {
-				//Do Nothing
-			}else {
-				
-				for(Auction_Item a: alist) 
-				{
-					try {
-					SimpleDateFormat formatter1=new SimpleDateFormat("yyyy-MM-dd");
-					
-						Date d1=formatter1.parse(a.getA_end_datetime());
-						int x=d1.getDate();
-						int y=localDate.getDayOfMonth();
-						
-						int z=y-x;	//0 or positive			times up
-									//negative 				running
-						
-						if(z>=0) {
-							a.setTimer("Expired");
-							if(a.getA_item_status().equalsIgnoreCase("Running"))
-							{
-								a.setA_item_status("No bid");
-								
-							}
-							aDao.save(a);
-						}
-						
-					} catch (ParseException e) {
-						
-						e.printStackTrace();
-					}
-					
-				}
-			
-		}
+		    if (alist.isEmpty()) {
+		        // Do Nothing
+		    } else {
+		        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+		        for (Auction_Item a : alist) {
+		            try {
+		                LocalDate endDate = LocalDate.parse(a.getA_end_datetime(), formatter);
+		                long daysDifference = ChronoUnit.DAYS.between(localDate, endDate);
+
+		                if (daysDifference >= 0) {
+		                    a.setTimer("Running");
+		                } else {
+		                    a.setTimer("Expired");
+		                    if (a.getA_item_status().equalsIgnoreCase("Running")) {
+		                        a.setA_item_status("No bid");
+		                    }
+		                    aDao.save(a);
+		                }
+
+		            } catch (DateTimeParseException e) {
+		                e.printStackTrace();
+		            }
+		        }
+		    }
 		}
 
 

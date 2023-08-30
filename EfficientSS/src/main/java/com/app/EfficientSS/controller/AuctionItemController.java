@@ -54,7 +54,7 @@ public class AuctionItemController {
 	
 	@PutMapping("customer/bidder/{b_id}/{a_item_id}")
 	public ResponseEntity<Bidder> BidderSelection(@PathVariable("b_id") int b_id,@PathVariable("a_item_id") int a_item_id){
-		
+		System.out.println("jkhnjubjhbhuj");
 		Bidder b=aservice.updateBidder(b_id,a_item_id);
 		if(b!=null) {
 			   return ResponseEntity.ok(b);
@@ -68,7 +68,7 @@ public class AuctionItemController {
 	
 	@GetMapping("transporter/auctionitem")
 	public ResponseEntity<List<Auction_Item>> Auction_ItemList(){
-System.out.println("sadsada");
+		System.out.println("sadsada");
 		itemService.startMethod();
 		
 		return aservice.listOfAuctionItems();

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
+import com.app.EfficientSS.beans.Auction_Item;
 import com.app.EfficientSS.beans.Bidder;
 
 public interface BidderService {
@@ -13,5 +14,9 @@ public interface BidderService {
 	ResponseEntity<List<Bidder>> HistoryDirectBidder();
 
 	List<Bidder> ListofSelcetedandUnselectedBids(long id);
+
+	List<Auction_Item> getAuctionItems(int c_id);
+
+	Bidder updateBidder(int b_id, int a_id);
 
 }

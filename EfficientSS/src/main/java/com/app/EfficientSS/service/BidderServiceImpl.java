@@ -6,10 +6,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.app.EfficientSS.beans.Auction_Item;
 import com.app.EfficientSS.beans.Bidder;
 import com.app.EfficientSS.beans.Customer;
 import com.app.EfficientSS.beans.Item_Details;
 import com.app.EfficientSS.beans.Transporter;
+import com.app.EfficientSS.dao.AuctionItemDao;
 import com.app.EfficientSS.dao.BidderDao;
 import com.app.EfficientSS.dao.CustomerDao;
 import com.app.EfficientSS.dao.ItemDao;
@@ -30,6 +32,8 @@ public class BidderServiceImpl implements BidderService {
 	private ItemDao itemDao;
 	@Autowired
     private TransporterDao tdao;
+	@Autowired 
+	AuctionItemDao adao;
 
 	@Override
 	public ResponseEntity<Bidder> setBidderNoAuction(long t_id, int item_id, int cust_id, double price) {
@@ -39,6 +43,7 @@ public class BidderServiceImpl implements BidderService {
 		Transporter trans=tdao.getById(t_id);
 		Customer cust=customerdao.getById(cust_id);
 		Item_Details item=itemDao.findByItemId(item_id);
+		System.out.println(item.getItem_Id());
 		item.setOperation_status("Direct Booked");
 		bidder.setB_name(trans.getT_full_name());
 		bidder.setB_ph_no(trans.getT_ph_no());
@@ -76,7 +81,6 @@ public class BidderServiceImpl implements BidderService {
 	public ResponseEntity<List<Bidder>> HistoryDirectBidder() {
 			
 		try {
-			//List<Bidder> bid=B_repo.findAllSelected();
 			
 			List<Item_Details> idetail=itemDao.findAll();
 
@@ -98,7 +102,7 @@ public class BidderServiceImpl implements BidderService {
 					selectedbidder.add(a);
 				}
 			}
-			
+			System.out.println(selectedbidder);
 			return new ResponseEntity<>(selectedbidder,HttpStatus.OK);
 		} catch (Exception e) {
 			
@@ -114,10 +118,54 @@ public class BidderServiceImpl implements BidderService {
 		if(trans.isPresent()) {
 			Transporter T=	trans.get();
 			List<Bidder> Bid=T.getBidder();
+			System.out.println(Bid);
 			return Bid;}
 		else
 			return null;
 		}
+
+	@Override
+	public List<Auction_Item> getAuctionItems(int c_id) {
+			
+			List<Auction_Item> auction_Items = adao.findByCustomerId(c_id);
+
+			if (auction_Items !=null) {
+				return auction_Items;
+			}
+		else 	
+		return null;
+	}
+
+	@Override
+	public Bidder updateBidder(int b_id, int a_id) {
+		try {
+			Optional<Bidder> oldBidder = bdao.findById(b_id);
+			
+			Optional<Auction_Item> oldAuctionItem = adao.findById(a_id);
+			
+			if(oldAuctionItem.isPresent())
+			{
+				Auction_Item newAuctionItem=oldAuctionItem.get();
+				newAuctionItem.setA_item_status("Transporter Selected");;
+				
+				adao.save(newAuctionItem);
+			}
+			System.out.println("hhhh");
+			if(oldBidder.isPresent())
+			{
+				Bidder newBidder=oldBidder.get();
+				newBidder.setB_selection_status("Selected");
+				
+				
+				return bdao.save(newBidder);
+			}
+			else
+				return null;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 		
 

@@ -37,7 +37,7 @@ public class Bidder {
 	@ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinTable(name="Customer_Bidder",
                 joinColumns={@JoinColumn(name="b_id")}, 
-                inverseJoinColumns={@JoinColumn(name="c_id")})
+                inverseJoinColumns={@JoinColumn(name="cust_id")})
     private List<Customer> customer;
 	
 	@JsonIgnore
@@ -49,14 +49,14 @@ public class Bidder {
 	@ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinTable(name="Item_Detail_Bidder",
                 joinColumns={@JoinColumn(name="b_id")}, 
-                inverseJoinColumns={@JoinColumn(name="i_id")})
+                inverseJoinColumns={@JoinColumn(name="item_Id")})
     private List<Item_Details> item_detail;
     
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinTable(name="Auction_Item_Bidder", 
                 joinColumns={@JoinColumn(name="b_id")}, 
-                inverseJoinColumns={@JoinColumn(name="a_id")})
+                inverseJoinColumns={@JoinColumn(name="A_item_id")})
     private List<Auction_Item> auction_item;
 	
     public Bidder() {

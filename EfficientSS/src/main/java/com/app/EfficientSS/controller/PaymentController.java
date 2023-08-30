@@ -42,9 +42,7 @@ public class PaymentController {
 
 	@GetMapping("admin/payment")
 	public ResponseEntity<List<Payment>> CheckPayment(){
-		System.out.println("reach");
 		List<Payment> payments=pservice.CheckPayment();
-		System.out.println(payments);
 		if(payments!=null)
 			return ResponseEntity.ok(payments);
 		else 
