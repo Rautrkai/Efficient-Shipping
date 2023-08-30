@@ -22,7 +22,6 @@ export default class KilometerRangeForm extends Component{
 
 
 submitForm = (e) => {
-
   const url = `http://localhost:8282/customer/bidder/${this.state.item_Id}?t_id=${this.state.t_id}&cust_id=${this.state.cust_id}&price=${this.state.price}`;
   fetch(url, { method: "POST" })
   .then(response => {
@@ -47,7 +46,6 @@ submitForm = (e) => {
         
       <NavBar/>
       <Form style={{paddingTop:"120px"}}>
-      <h3>Enter Your Kilometer Range</h3><br/>
 
   <Row form>
     <Col md={6}>
@@ -57,7 +55,7 @@ submitForm = (e) => {
         />
     {/* {' '} */}
     <Label check>
-     Terms & Conditions : Your Kilometer Range should be accurate if not then it will add penalty to your payment
+     Terms & Conditions : 
     </Label>
   </FormGroup>
     </Col>

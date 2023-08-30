@@ -88,17 +88,18 @@ export default function CPayment() {
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="payment_amount">Payment Amount (in Rupees)</Label>
-                <Input
-                  id="payment_amount"
-                  name="payment_amount"
-                  placeholder="Enter payment amount"
-                  type="number"
-                  min={1}
-                  value={paymentAmount}
-                  onChange={(e) => setPaymentAmount(parseInt(e.target.value, 10))}
-                />
-              </FormGroup>
+  <Label for="payment_amount">Payment Amount (in Rupees)</Label>
+  <Input
+    id="payment_amount"
+    name="payment_amount"
+    placeholder="Enter payment amount"
+    type="number"
+    min={1}
+    value={paymentAmount}
+    onChange={(e) => setPaymentAmount(parseInt(e.target.value, 10))}
+    readOnly // Add this attribute to make the input read-only
+  />
+</FormGroup>
             </Col>
           </Row>
           <FormGroup check>

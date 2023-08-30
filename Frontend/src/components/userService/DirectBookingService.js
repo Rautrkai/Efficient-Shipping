@@ -14,7 +14,7 @@ const API4 = "http://localhost:8282/customer/auctionitembidder";
 
 const API5 = "http://localhost:8282/customer/directhistory";
 
-const API6 = "http://localhost:8080/customer/historyauctionitem";
+const API6 = "http://localhost:8282/customer/historyauctionitem";
 
 const API7 = "http://localhost:8282/transporter/selectedBidders";
 
@@ -144,7 +144,7 @@ const API12 = "http://localhost:8282/transporter/selectedBidders";
 
    getAuctionItemHistory()
    {
-    const cust_id = JSON.parse(localStorage.getItem('c_id'));
+    const cust_id = JSON.parse(localStorage.getItem('cust_id'));
     let url = API6 +"/"+cust_id;
     const ahistory = axios.get(url);
     console.log(ahistory);

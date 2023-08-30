@@ -30,7 +30,7 @@ onSubmit(b_id)
         
       }
      
-        fetch(`http://localhost:8080/customer/bidder/${b_id}/${a_item_id}`,requestOption).then(
+        fetch(`http://localhost:8282/customer/bidder/${b_id}/${a_item_id}`,requestOption).then(
           response => response.json()
           ).then((data)=> {
            localStorage.setItem('b_price',data.b_price)

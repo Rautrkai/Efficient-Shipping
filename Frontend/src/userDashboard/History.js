@@ -16,14 +16,14 @@ export default class History extends Component {
         }
       
     }
-  //   getBiddersById(a_item_id){
-  //     console.log(a_item_id);
-  //     localStorage.setItem("a_item_id",a_item_id);
+    getBiddersById(a_item_id){
+      console.log(a_item_id);
+      localStorage.setItem("a_item_id",a_item_id);
     
         
-  //         // console.log(this.state.bidders);
-  //           window.location.href = "/checkBidderHistory";
-  // }
+          // console.log(this.state.bidders);
+            window.location.href = "/checkBidderHistory";
+  }
 
     componentDidMount(){
        
@@ -33,10 +33,10 @@ export default class History extends Component {
             console.log(this.state.directhistory);
         });
       
-        // DirectBookingService.getAuctionItemHistory().then((res) => {
-        //     this.setState({ auctionhistory: res.data});
-        //     console.log(this.state.auctionhistory);
-        // });
+        DirectBookingService.getAuctionItemHistory().then((res) => {
+            this.setState({ auctionhistory: res.data});
+            console.log(this.state.auctionhistory);
+        });
       }
 
 
@@ -105,7 +105,7 @@ export default class History extends Component {
                 <tr>
                   <th>No</th>
                   <th> Item Name  </th>
-                  <th>Lowest Bid Price </th>
+                  {/* <th>Lowest Bid Price </th> */}
                   <th>Highest Bid Price</th>
                   <th>status</th>
                   <th>Timer</th>
@@ -119,7 +119,7 @@ export default class History extends Component {
                         <tr key={ahistory.a_item_id}>
                             <td>{ahistory.a_item_id}</td>
                             <td>{ahistory.item_detail.i_name}</td>
-                            <td>{ahistory.lowest_bid_price}</td>
+                            {/* <td>{ahistory.lowest_bid_price}</td> */}
                             <td>{ahistory.highest_bid_price}</td>
                            <td>  {ahistory.a_item_status} </td> 
                            <td>{ahistory.timer}</td>
