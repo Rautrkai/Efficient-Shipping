@@ -1,7 +1,0 @@
-package com.app.EfficientSS.dao;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-
-public interface FeedbackDao extends JpaRepository<Feedback,Integer> {
-
-}

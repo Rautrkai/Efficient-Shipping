@@ -1,7 +1,0 @@
-package com.app.EfficientSS.service;
-
-public interface EstimatePriceService {
-
-//	double findprice(long t_id, int item_id);
-
-}

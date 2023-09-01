@@ -1,9 +1,0 @@
-package com.app.EfficientSS.service;
-
-import com.app.EfficientSS.beans.Transporter;
-
-public interface TransporterService {
-
-	Transporter createTransporter(Transporter transporter);
-
-}

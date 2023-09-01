@@ -1,7 +1,0 @@
-package com.app.EfficientSS.service;
-
-
-@Service
-public class FeedbackServiceImpl implements FeedbackService  {
-
-}

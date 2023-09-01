@@ -128,25 +128,38 @@ export default function RegisterItem() {
       Pickup City
     </Label>
     <Input
-      id="pickup_city"
-      name="pickup_city"
-      type="select"
-      value={pickup_city}
-      onChange={(e)=>setPickupCity(e.target.value)}
-    >
-       <option value="none" selected disabled >
-         Select an Option
-         </option>
-      <option>
-        
-      </option>
-      <option>Pune</option>
-      <option>Mumbai</option>
-      <option>Kolhapur</option>
-      <option>Nashik</option>
-      <option>Dhule</option>
-      <option>Nagpur</option>
-    </Input>
+  id="pickup_city"
+  name="pickup_city"
+  type="select"
+  value={pickup_city}
+  onChange={(e) => setPickupCity(e.target.value)}
+>
+  <option value="none" disabled>
+    Select an Option
+  </option>
+  
+  <option value="Ahmednagar">Ahmednagar</option>
+  <option value="Akola">Akola</option>
+  <option value="Amravati">Amravati</option>
+  <option value="Aurangabad">Aurangabad</option>
+  <option value="Bhiwandi">Bhiwandi</option>
+  <option value="Bhusawal">Bhusawal</option>
+  <option value="Chandrapur">Chandrapur</option>
+  <option value="Dhule">Dhule</option>
+  <option value="Kalyan">Kalyan</option>
+  <option value="Kolhapur">Kolhapur</option>
+  <option value="Latur">Latur</option>
+  <option value="Malegaon">Malegaon</option>
+  <option value="Mumbai">Mumbai</option>
+  <option value="Nagpur">Nagpur</option>
+  <option value="Nanded">Nanded</option>
+  <option value="Nasik">Nasik</option>
+  <option value="Parbhani">Parbhani</option>
+  <option value="Pune">Pune</option>
+  <option value="Sangli">Sangli</option>
+  <option value="Sholapur">Sholapur</option>
+</Input>
+
   </FormGroup>
 
   <FormGroup>
@@ -184,25 +197,37 @@ export default function RegisterItem() {
       Delivery City
     </Label>
     <Input
-      id="delivery_city"
-      name="delivery_city"
-      type="select"
-      value={delivery_city}
-      onChange={(e)=>setDeliveryCity(e.target.value)}
-    >
-       <option value="none" selected disabled>
-         Select an Option
-         </option>
-        
-         <option>
-       </option>
-      <option>Pune</option>
-      <option>Mumbai</option>
-      <option>Dhule</option>
-      <option>Kolhapur</option>
-      <option>Nashik</option>
-      <option>Nagpur</option>
-    </Input>
+  id="delivery_city"
+  name="delivery_city"
+  type="select"
+  value={delivery_city}
+  onChange={(e) => setDeliveryCity(e.target.value)}
+>
+  <option value="none" selected disabled>
+    Select an Option
+  </option>
+  
+  <option value="Ahmednagar">Ahmednagar</option>
+  <option value="Akola">Akola</option>
+  <option value="Amravati">Amravati</option>
+  <option value="Aurangabad">Aurangabad</option>
+  <option value="Bhiwandi">Bhiwandi</option>
+  <option value="Bhusawal">Bhusawal</option>
+  <option value="Chandrapur">Chandrapur</option>
+  <option value="Dhule">Dhule</option>
+  <option value="Kalyan">Kalyan</option>
+  <option value="Kolhapur">Kolhapur</option>
+  <option value="Latur">Latur</option>
+  <option value="Malegaon">Malegaon</option>
+  <option value="Mumbai">Mumbai</option>
+  <option value="Nagpur">Nagpur</option>
+  <option value="Nanded">Nanded</option>
+  <option value="Nasik">Nasik</option>
+  <option value="Parbhani">Parbhani</option>
+  <option value="Pune">Pune</option>
+  <option value="Sangli">Sangli</option>
+  <option value="Sholapur">Sholapur</option>
+</Input>
   </FormGroup>
   
 
